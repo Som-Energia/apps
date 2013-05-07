@@ -80,7 +80,7 @@ sonata_admin:
     title:  'Administrador Som Energia'
     title_logo: '/favicon.png'
     templates:
-        layout: SonataAdminBundle::standard_layout.html.twig
+        layout: MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
         ajax: SonataAdminBundle::ajax_layout.html.twig
         list: SonataAdminBundle:CRUD:list.html.twig
@@ -89,8 +89,10 @@ sonata_admin:
     dashboard:
         blocks:
             - { position: left, type: sonata.admin.block.admin_list }
+            #- { position: right, type: sonata.block.service.text, settings: { content: "<h2>Hit</h2>" } }
         groups:
             Emails:
+    #persist_filters: true
 
 # DIC config
 services:
