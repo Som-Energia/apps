@@ -17,9 +17,31 @@ class AliasesAdmin extends Admin
 {
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('pkid', null, array('label' => 'ID'))
+        $listMapper
+            ->addIdentifier('pkid', null, array('label' => 'ID'))
             ->addIdentifier('mail', null, array('label' => 'Email'))
-            ->add('destination', null, array('label' => 'Desvios'))
-            ->add('enabled', 'boolean', array('label' => 'Activo'));
+            ->add('destination', null, array('label' => 'Desvíos'))
+            ->add('enabled', 'boolean', array('label' => 'Activo'))
+            ->add('_action', 'actions', array(
+                'actions' => array(
+                //'view' => array(),
+                'edit' => array(),
+            ), 'label' => 'Acciones'))
+        ;
+    }
+
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'ASC', // sort direction
+        '_sort_by' => 'mail' // field name
+    );
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    {
+        $datagridMapper
+            ->add('mail', null, array('label' => 'Email'))
+            ->add('destination', null, array('label' => 'Desvíos'))
+            ->add('enabled', null, array('label' => 'Activo'))
+        ;
     }
 }
