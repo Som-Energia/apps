@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             //new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             new SomEnergia\MailBundle\MailBundle(),
+            new SomEnergia\MainBundle\MainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
