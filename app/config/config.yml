@@ -5,6 +5,7 @@ imports:
 framework:
     #esi:             ~
     #translator:      { fallback: %locale% }
+    translator: ~
     secret:          %secret%
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -63,3 +64,38 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+
+# Sonata Block
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.block.service.text:   ~
+        sonata.block.service.action: ~
+        sonata.block.service.rss:    ~
+
+# Sonata Admin
+sonata_admin:
+    title:  'Administrador Som Energia'
+    title_logo: '/favicon.png'
+    templates:
+        layout: SonataAdminBundle::standard_layout.html.twig
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        ajax: SonataAdminBundle::ajax_layout.html.twig
+        list: SonataAdminBundle:CRUD:list.html.twig
+        show: SonataAdminBundle:CRUD:show.html.twig
+        edit: SonataAdminBundle:CRUD:edit.html.twig
+    dashboard:
+        blocks:
+            - { position: left, type: sonata.admin.block.admin_list }
+        groups:
+            Emails:
+
+# DIC config
+services:
+    somenergia.mails.admin:
+        class: SomEnergia\MailBundle\Admin\MailAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvios }
+        arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
