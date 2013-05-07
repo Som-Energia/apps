@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1d819ae85a05673870505c14af0e4a49",
+    "hash": "19dfe54fc0b857af89e4016a8ecf3239",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1889,12 +1889,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "2.2.1"
+                "reference": "26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/2.2.1",
-                "reference": "2.2.1",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35",
+                "reference": "26300bd2c19cb3a7f65f3cf14012bf3fe3a8db35",
                 "shasum": ""
             },
             "require": {
@@ -1943,7 +1943,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2013-05-07 12:03:58"
+            "time": "2013-05-07 16:24:48"
         },
         {
             "name": "sonata-project/cache-bundle",
@@ -2066,12 +2066,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "2.2.1"
+                "reference": "4edd2bd4e79e97c23281f4bba8dcda9dc46bb122"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/2.2.1",
-                "reference": "2.2.1",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/4edd2bd4e79e97c23281f4bba8dcda9dc46bb122",
+                "reference": "4edd2bd4e79e97c23281f4bba8dcda9dc46bb122",
                 "shasum": ""
             },
             "require": {
@@ -2115,21 +2115,21 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2013-05-07 13:33:02"
+            "time": "2013-05-07 13:41:40"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
-            "version": "2.1.1",
+            "version": "dev-master",
             "target-dir": "Sonata/EasyExtendsBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataEasyExtendsBundle.git",
-                "reference": "2.1.1"
+                "reference": "19a63f38b0de28d8d69f320a368b2ad7c304716f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/2.1.1",
-                "reference": "2.1.1",
+                "url": "https://api.github.com/repos/sonata-project/SonataEasyExtendsBundle/zipball/19a63f38b0de28d8d69f320a368b2ad7c304716f",
+                "reference": "19a63f38b0de28d8d69f320a368b2ad7c304716f",
                 "shasum": ""
             },
             "require": {
@@ -2171,7 +2171,7 @@
                 "Easy Extends",
                 "sonata"
             ],
-            "time": "2013-02-25 12:19:34"
+            "time": "2013-03-01 16:21:38"
         },
         {
             "name": "sonata-project/exporter",
@@ -2943,6 +2943,7 @@
         "sonata-project/block-bundle": 20,
         "sonata-project/admin-bundle": 20,
         "sonata-project/user-bundle": 20,
+        "sonata-project/easy-extends-bundle": 20,
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "stof/doctrine-extensions-bundle": 20,
         "knplabs/knp-menu": 20,

@@ -49,6 +49,8 @@ doctrine:
         user:     %database_user%
         password: %database_password%
         charset:  UTF8
+        types:
+            json: Sonata\Doctrine\Types\JsonType
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: %kernel.root_dir%/data/data.db3
         # path:     %database_path%
@@ -56,6 +58,10 @@ doctrine:
     orm:
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
+        mappings:
+            ApplicationSonataUserBundle: ~
+            SonataUserBundle: ~
+            FOSUserBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -100,3 +106,27 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
         arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
+
+# Sonata FOS User
+sonata_user:
+    security_acl: true
+    class:                  # Entity Classes
+        user:               Application\Sonata\UserBundle\Entity\User
+        group:              Application\Sonata\UserBundle\Entity\Group
+    admin:                  # Admin Classes
+        user:
+            class:          Sonata\UserBundle\Admin\Entity\UserAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle
+        group:
+            class:          Sonata\UserBundle\Admin\Entity\GroupAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle
+
+# Friends Of Symfony (FOS)
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group

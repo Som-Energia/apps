@@ -29,15 +29,17 @@ class AppKernel extends Kernel
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
+            new FOS\UserBundle\FOSUserBundle(),
+
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
-            //new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 
-            //new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             new SomEnergia\MailBundle\MailBundle(),
             new SomEnergia\MainBundle\MainBundle(),

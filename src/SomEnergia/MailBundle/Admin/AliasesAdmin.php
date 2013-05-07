@@ -16,7 +16,7 @@ class AliasesAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('pkid', null, array('label' => 'ID'))
+            ->add('pkid', null, array('label' => 'ID'))
             ->addIdentifier('mail', null, array('label' => 'Email'))
             ->add('destination', null, array('label' => 'Desvíos'))
             ->add('enabled', 'boolean', array('label' => 'Activo'))
