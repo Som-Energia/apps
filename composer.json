@@ -27,6 +27,7 @@
         "sonata-project/block-bundle": "2.2.*@dev",
         "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/user-bundle": "2.2.*@dev",
+        "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "stof/doctrine-extensions-bundle": "dev-master",
         "knplabs/knp-menu": "1.1.*@dev",
         "knplabs/knp-menu-bundle": "1.1.*@dev",

@@ -5,5 +5,5 @@ use Sonata\AdminBundle\Controller\CRUDController as Controller;
 
 class AliasesAdminController extends Controller
 {
-    
+
 }
