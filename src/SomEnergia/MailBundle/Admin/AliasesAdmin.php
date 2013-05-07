@@ -2,14 +2,12 @@
 namespace SomEnergia\MailBundle\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Translator;
+//use Symfony\Component\Translation\Translator;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-//use Sonata\PageBundle\Model\PageInterface;
-use Knp\Menu\ItemInterface as MenuItemInterface;
 
 use SomeEnergia\MailBundle\Entity\Aliases;
 
@@ -42,6 +40,27 @@ class AliasesAdmin extends Admin
             ->add('mail', null, array('label' => 'Email'))
             ->add('destination', null, array('label' => 'Desvíos'))
             ->add('enabled', null, array('label' => 'Activo'))
+        ;
+    }
+
+    /*protected function configureShowField(ShowMapper $showMapper)
+    {
+        $showMapper
+            ->add('pkid')
+            ->add('mail')
+            ->add('destination')
+            ->add('enabled')
+        ;
+    }*/
+
+    protected function configureFormFields(FormMapper $formMapper)
+    {
+        $formMapper
+            ->add('mail', 'text', array('label' => 'Email'))
+            ->add('destination', 'text', array('label' => 'Desvíos'))
+            ->add('enabled', 'checkbox', array('label' => 'Activo', 'required' => false))
+            ->setHelps(array(
+                'destination' => 'Introduce múltiples direcciones separadas por comas'))
         ;
     }
 }

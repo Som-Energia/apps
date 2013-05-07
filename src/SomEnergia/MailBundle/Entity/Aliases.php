@@ -25,7 +25,7 @@ class Aliases
     /**
      * @var string
      *
-     * @ORM\Column(name="mail", type="string", length=120, nullable=false)
+     * @ORM\Column(name="mail", type="string", length=120, unique=true, nullable=false)
      * @Assert\Email()
      */
     private $mail;
@@ -33,7 +33,7 @@ class Aliases
     /**
      * @var string
      *
-     * @ORM\Column(name="destination", type="string", length=120, nullable=false)
+     * @ORM\Column(name="destination", type="string", length=255, nullable=false)
      */
     private $destination;
 
@@ -43,8 +43,6 @@ class Aliases
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
     private $enabled;
-
-
 
     /**
      * Get pkid
@@ -64,7 +62,7 @@ class Aliases
      */
     public function setMail($mail)
     {
-        $this->mail = $mail;
+        $this->mail = str_replace(' ', '', $mail);
     
         return $this;
     }
@@ -83,12 +81,21 @@ class Aliases
      * Set destination
      *
      * @param string $destination
-     * @return Aliases
+     * @return Aliases parsed and wel formed
      */
     public function setDestination($destination)
     {
-        $this->destination = $destination;
-    
+        $destination = str_replace(' ', '', $destination); // remove white spaces
+        $items = explode(',', $destination); // trunk string into an array of emails
+        $this->destination = '';
+
+        foreach ($items as $item) {
+            if (filter_var($item, FILTER_VALIDATE_EMAIL)) {
+                $this->destination .= $item . ',';
+            }
+        }
+        if (strlen($this->destination) > 0) $this->destination = substr($this->destination, 0, -1); // remove last comma
+
         return $this;
     }
 
