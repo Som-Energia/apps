@@ -98,6 +98,7 @@ sonata_admin:
             - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Bienvenido al administrador web de Som Energia</h2><p>Elige alguna de las acciones disponibles para tu usuario.</p>" } }
         groups:
             Emails:
+            Usuarios:
 
 # DIC config
 services:
@@ -106,6 +107,16 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
         arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
+    sonata.users.admin:
+        class: Sonata\UserBundle\Admin\Model\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Usuario }
+        arguments: [null, Application\Sonata\UserBundle\Entity\User, SonataUserBundle:Admin:UserAdmin]
+    sonata.groups.admin:
+        class: Sonata\UserBundle\Admin\Model\GroupAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Perfil }
+        arguments: [null, Application\Sonata\UserBundle\Entity\Group, SonataUserBundle:Admin:GroupAdmin]
 
 # Sonata FOS User
 sonata_user:
