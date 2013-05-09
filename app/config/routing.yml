@@ -2,9 +2,9 @@ main:
     resource: "@MainBundle/Resources/config/routing.yml"
     prefix:   /
 
-mail:
-    resource: "@MailBundle/Resources/config/routing.yml"
-    prefix:   /
+#mail:
+#    resource: "@MailBundle/Resources/config/routing.yml"
+#    prefix:   /
 
 sonata:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
