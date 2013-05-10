@@ -101,14 +101,10 @@ sonata_admin:
         groups:
             Emails:
             Usuarios:
+            Asambleas:
 
 # DIC config
 services:
-    somenergia.mails.admin:
-        class: SomEnergia\MailBundle\Admin\AliasesAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
-        arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
     sonata.users.admin:
         class: Sonata\UserBundle\Admin\Model\UserAdmin
         tags:
@@ -119,6 +115,16 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Perfil }
         arguments: [null, Application\Sonata\UserBundle\Entity\Group, SonataUserBundle:Admin:GroupAdmin]
+    somenergia.mails.admin:
+        class: SomEnergia\MailBundle\Admin\AliasesAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
+        arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
+    somenergia.asamblea.sede:
+        class: SomEnergia\AsambleaBundle\Admin\SedeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Sede }
+        arguments: [null, SomEnergia\AsambleaBundle\Entity\Sede, AsambleaBundle:SedeAdmin]
     somenergia.sonata.custom.block.admin_list:
         class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
         arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]

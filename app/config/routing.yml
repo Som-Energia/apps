@@ -1,3 +1,7 @@
+asamblea:
+    resource: "@AsambleaBundle/Resources/config/routing.yml"
+    prefix:   /
+
 main:
     resource: "@MainBundle/Resources/config/routing.yml"
     prefix:   /

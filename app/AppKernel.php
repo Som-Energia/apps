@@ -43,6 +43,7 @@ class AppKernel extends Kernel
 
             new SomEnergia\MailBundle\MailBundle(),
             new SomEnergia\MainBundle\MainBundle(),
+            new SomEnergia\AsambleaBundle\AsambleaBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
