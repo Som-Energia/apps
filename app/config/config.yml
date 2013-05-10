@@ -125,6 +125,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Sede }
         arguments: [null, SomEnergia\AsambleaBundle\Entity\Sede, AsambleaBundle:SedeAdmin]
+    somenergia.asamblea.asamblea:
+        class: SomEnergia\AsambleaBundle\Admin\AsambleaAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Asamblea }
+        arguments: [null, SomEnergia\AsambleaBundle\Entity\Asamblea, AsambleaBundle:AsambleaAdmin]
     somenergia.sonata.custom.block.admin_list:
         class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
         arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]

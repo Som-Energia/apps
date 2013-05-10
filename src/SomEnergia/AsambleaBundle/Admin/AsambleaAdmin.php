@@ -11,15 +11,16 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\PageBundle\Model\PageInterface;
 use Knp\Menu\ItemInterface as MenuItemInterface;
 
-use SomEnergia\AsambleaBundle\Entity\Sede;
+use SomEnergia\AsambleaBundle\Entity\Asamblea;
 
-class SedeAdmin extends Admin
+class AsambleaAdmin extends Admin
 {
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
         ->add('id')
         ->addIdentifier('nombre', null, array('label' => 'Nombre'))
+        ->add('fecha', null, array('label' => 'Fecha'))
         // add custom action links
             ->add('_action', 'actions', array(
             'actions' => array(
@@ -33,7 +34,7 @@ class SedeAdmin extends Admin
     protected $datagridValues = array(
         '_page' => 1,
         '_sort_order' => 'ASC', // sort direction
-        '_sort_by' => 'nombre' // field name
+        '_sort_by' => 'fecha' // field name
     );
 
     /*protected function configureDatagridFilters(DatagridMapper $datagridMapper)
@@ -48,6 +49,7 @@ class SedeAdmin extends Admin
     {
         $formMapper
             ->add('nombre', 'text', array('label' => 'Nombre'))
+            ->add('fecha', 'date', array('label' => 'Fecha'))
         ;
     }
 }
