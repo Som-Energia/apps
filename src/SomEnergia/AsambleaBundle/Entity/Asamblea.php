@@ -3,7 +3,6 @@ namespace SomEnergia\AsambleaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Doctrine\Common\Collections\ArrayCollection as ACollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -60,6 +59,6 @@ class Asamblea
 
     public function __toString()
     {
-        return $this->getNombre(). ' · ' . $this->getFecha() ? : '---';
+        return $this->getNombre() ? : '---';
     }
 }
