@@ -80,6 +80,7 @@ sonata_block:
         sonata.block.service.text:   ~
         sonata.block.service.action: ~
         sonata.block.service.rss:    ~
+        somenergia.sonata.custom.block.admin_list: ~
 
 # Sonata Admin
 sonata_admin:
@@ -87,14 +88,15 @@ sonata_admin:
     title_logo: '/favicon.png'
     templates:
         layout: MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
-        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        dashboard: MainBundle:SonataAdmin:somenergia_custom_dashboard.html.twig
+        #dashboard: SonataAdminBundle:Core:dashboard.html.twig
         ajax: SonataAdminBundle::ajax_layout.html.twig
         list: SonataAdminBundle:CRUD:list.html.twig
         show: SonataAdminBundle:CRUD:show.html.twig
         edit: SonataAdminBundle:CRUD:edit.html.twig
     dashboard:
         blocks:
-            - { position: left, type: sonata.admin.block.admin_list }
+            - { position: left, type: somenergia.sonata.custom.block.admin_list }
             - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Bienvenido al administrador web de Som Energia</h2><p>Elige alguna de las acciones disponibles para tu usuario.</p>" } }
         groups:
             Emails:
@@ -117,6 +119,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Perfil }
         arguments: [null, Application\Sonata\UserBundle\Entity\Group, SonataUserBundle:Admin:GroupAdmin]
+    somenergia.sonata.custom.block.admin_list:
+        class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
+        arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]
+        tags:
+            - { name: sonata.block }
 
 # Sonata FOS User
 sonata_user:
