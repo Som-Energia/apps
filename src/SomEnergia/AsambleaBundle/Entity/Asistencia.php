@@ -2,7 +2,7 @@
 namespace SomEnergia\AsambleaBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection as ACollection;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -10,6 +10,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\Entity
  * @ORM\Table(name="somenergia_asamblea_asistencia")
  * @ORM\Entity(repositoryClass="SomEnergia\AsambleaBundle\Repository\AsistenciaRepository")
+ * @UniqueEntity({"socio", "asamblea", "sede"})
  * @ORM\HasLifecycleCallbacks
  */
 class Asistencia
