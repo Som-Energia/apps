@@ -102,6 +102,7 @@ sonata_admin:
             Emails:
             Usuarios:
             Asambleas:
+            Socios:
 
 # DIC config
 services:
@@ -130,6 +131,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Asamblea }
         arguments: [null, SomEnergia\AsambleaBundle\Entity\Asamblea, AsambleaBundle:AsambleaAdmin]
+    somenergia.socio.socio:
+        class: SomEnergia\SocioBundle\Admin\SocioAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Socios, label: Socio }
+        arguments: [null, SomEnergia\SocioBundle\Entity\Socio, SocioBundle:SocioAdmin]
     somenergia.sonata.custom.block.admin_list:
         class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
         arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]

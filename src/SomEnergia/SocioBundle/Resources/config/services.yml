@@ -1,0 +1,7 @@
+parameters:
+#    socio.example.class: SomEnergia\SocioBundle\Example
+
+services:
+#    socio.example:
+#        class: %socio.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
