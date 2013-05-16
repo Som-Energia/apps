@@ -9,9 +9,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\PageBundle\Model\PageInterface;
-use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
-use SomEnergia\AsambleaBundle\Entity\Sede;
 
 class AsistenciaAdmin extends Admin
 {
@@ -53,5 +52,10 @@ class AsistenciaAdmin extends Admin
             ->add('asamblea','sonata_type_model', array('label' => 'Asamblea'), array())
             ->add('sede','sonata_type_model', array('label' => 'Sede'), array())
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
     }
 }

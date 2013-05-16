@@ -59,11 +59,27 @@ class AsistenciaController extends Controller
                     $asistencia->setSocio($socio);
                     $asistencia->setSede($sede);
                     $asistencia->setAsamblea($asamblea);
-                    $em->persist($asistencia);
-                    $em->flush();
-                    $this->get('session')->setFlash('info', 'Has registrado la asistencia del socio "' . $socio. '" en la sede "' . $sede . '" para la asamblea "' . $asamblea->toStringLong() . '" correctamente');
+                    $query = $em->createQuery('SELECT a FROM AsambleaBundle:Asistencia a WHERE a.socio = :socioID AND a.sede = :sedeID AND a.asamblea = :asambleaID');
+                    $query->setParameter('socioID', $socio->getId());
+                    $query->setParameter('sedeID', $sede->getId());
+                    $query->setParameter('asambleaID', $asamblea->getId());
+                    $asistenciaBD = $query->getOneOrNullResult();
+                    if (is_null($asistenciaBD)) {
+                        // no existe, es nuevo y correcto
+                        $em->persist($asistencia);
+                        $em->flush();
+                        $this->get('session')->setFlash('info', 'Has registrado la asistencia del socio "' . $socio. '" en la sede "' . $sede . '" para la asamblea "' . $asamblea->toStringLong() . '" correctamente');
+                    } else {
+                        $this->get('session')->setFlash('error', 'Ya existe registrada la asistencia del socio "' . $socio. '" en la sede "' . $sede . '" para la asamblea "' . $asamblea->toStringLong() . '". Código error: 504');
+                    }
+                } else {
+                    $this->get('session')->setFlash('error', 'Se ha producido un error inesperado. Código error: 503');
                 }
+            } else {
+                $this->get('session')->setFlash('error', 'Se ha producido un error inesperado. Código error: 502');
             }
+        } else {
+            $this->get('session')->setFlash('error', 'Se ha producido un error inesperado. Código error: 501');
         }
         return $this->render('AsambleaBundle:Asistencia:nuevo.html.twig', array(
             'form' => $form->createView(),
