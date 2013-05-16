@@ -93,6 +93,7 @@ security:
         - { path: ^/admin/somenergia/socio, role: ROLE_SUPER_ADMINISTRADOR }
         - { path: ^/admin/somenergia/mail, role: ROLE_GESTOR_MAILS }
         - { path: ^/admin/somenergia/asamblea, role: ROLE_ADMINISTRADOR_ASAMBLEA }
+        - { path: ^/admin/somenergia/asistencia, role: ROLE_DELEGADO_ASAMBLEA }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.

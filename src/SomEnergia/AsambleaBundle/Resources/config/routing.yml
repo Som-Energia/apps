@@ -6,6 +6,6 @@ asamblea_asistencia_informes:
     pattern: /admin/somenergia/asamblea/informe/choose
     defaults: { _controller: AsambleaBundle:Informe:choose }
 
-#asamblea_asistencia_informes_choose:
-#    pattern: /admin/somenergia/asamblea/informe/selected
-#    defaults: { _controller: AsambleaBundle:Informe:selected }
+asamblea_asistencia_nuevo_registro:
+    pattern: /admin/somenergia/asistencia/nuevo
+    defaults: { _controller: AsambleaBundle:Asistencia:nuevo }

@@ -5,10 +5,13 @@ use Doctrine\ORM\EntityRepository;
 
 class SocioRepository extends EntityRepository
 {
-    /*public function getActiveItemsSortedByPosition()
+    public function getItemsByNumberOrDniOrName($ref, $vat, $name)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT c FROM FluxProductBundle:ActivityCategory c WHERE c.isActive = 1 ORDER BY c.position ASC')
+            ->createQuery('SELECT s FROM SocioBundle:Socio s WHERE s.ref LIKE :ref OR s.vat LIKE :vat OR s.name LIKE :name')
+            ->setParameter('ref', '%' . $ref . '%')
+            ->setParameter('vat', '%' . $vat . '%')
+            ->setParameter('name', '%' . $name . '%')
             ->getResult();
-    }*/
+    }
 }

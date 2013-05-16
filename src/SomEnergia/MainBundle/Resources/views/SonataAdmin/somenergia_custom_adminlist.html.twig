@@ -8,11 +8,10 @@
         %}
             <table class="table table-bordered table-striped sonata-ba-list">
                 <thead>
-                <tr>
-                    <th colspan="3">{{ group.label|trans({}, group.label_catalogue) }}</th>
-                </tr>
+                    <tr>
+                        <th colspan="3">{{ group.label|trans({}, group.label_catalogue) }}</th>
+                    </tr>
                 </thead>
-
                 <tbody>
                 {% for admin in group.items %}
 
@@ -66,10 +65,31 @@
                         </td>
                     </tr>
                 {% endif %}
-
                 </tbody>
             </table>
         {% endif %}
 
     {% endfor %}
+    {% if (is_granted('ROLE_DELEGADO_ASAMBLEA')) %}
+        <table class="table table-bordered table-striped sonata-ba-list">
+            <thead>
+                <tr>
+                    <th colspan="3">Asistencias</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="sonata-ba-list-label">Asistencia</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-small" href="{{ path( 'asamblea_asistencia_nuevo_registro') }}">
+                                <i class="icon-plus"></i>
+                                Añadir asistencia
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    {% endif %}
 </div>
