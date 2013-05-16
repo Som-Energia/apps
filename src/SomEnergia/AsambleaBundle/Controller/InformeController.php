@@ -8,11 +8,10 @@ use SomEnergia\AsambleaBundle\Entity\Asamblea;
 
 class InformeController extends Controller
 {
-    // Step 1
+
     public function chooseAction()
     {
         $request = $this->getRequest();
-        //$asamblea = new Asamblea();
         $form = $this->createForm(new SelectAsambleaType());
         if ($request->isMethod('POST')) {
             // validar datos enviados
@@ -27,7 +26,8 @@ class InformeController extends Controller
                 foreach ($sedes as $sede) {
                     $temp = array();
                     $temp['sede'] = $sede;
-                    $temp['asistencias'] = 13;
+                    $asistencias = $em->getRepository('AsambleaBundle:Asistencia')->getItemsByAsambleaIdAndSedeId($asamblea->getId(), $sede->getId());
+                    $temp['asistencias'] = count($asistencias);
                     array_push($results, $temp);
                 }
                 return $this->render('AsambleaBundle:Informe:selected.html.twig', array(
@@ -41,14 +41,4 @@ class InformeController extends Controller
         ));
     }
 
-    // Step 2
-    public function selectedAction()
-    {
-        $objFrom = new SelectAsambleaType();
-        $form = $this->createForm(new SelectAsambleaType());
-
-        return $this->render('AsambleaBundle:Informe:choose.html.twig', array(
-            'form' => $form->createView(),
-        ));
-    }
 }

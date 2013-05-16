@@ -5,10 +5,12 @@ use Doctrine\ORM\EntityRepository;
 
 class AsistenciaRepository extends EntityRepository
 {
-    /*public function getActiveItemsSortedByPosition()
+    public function getItemsByAsambleaIdAndSedeId($aid, $sid)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT c FROM FluxProductBundle:ActivityCategory c WHERE c.isActive = 1 ORDER BY c.position ASC')
+            ->createQuery('SELECT a FROM AsambleaBundle:Asistencia a WHERE a.asamblea = :aid AND a.sede = :sid')
+            ->setParameter('aid', $aid)
+            ->setParameter('sid', $sid)
             ->getResult();
-    }*/
+    }
 }

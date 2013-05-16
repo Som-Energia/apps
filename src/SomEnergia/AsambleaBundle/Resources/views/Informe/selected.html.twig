@@ -3,6 +3,7 @@
 {% block title %}{% endblock%}
 
 {% block footer %}
+    {% set total = 0 %}
     <div class="btn-group" style="margin-bottom: 40px">
         <a class="btn btn-small" href="{{ path( 'sonata_admin_dashboard') }}">
             <i class="icon-circle-arrow-left"></i>
@@ -10,7 +11,7 @@
 
         </a>
         <a class="btn btn-small" href="{{ path( 'asamblea_asistencia_informes') }}">
-            <i class="icon-circle-arrow-left"></i>
+            <i class="icon-repeat"></i>
             Volver al menú anterior
         </a>
     </div>
@@ -28,7 +29,14 @@
                     <td>{{ result.sede }}</td>
                     <td>{{ result.asistencias }}</td>
                 </tr>
+                {% set total = total + result.asistencias %}
             {% endfor %}
         </tbody>
+        <tfoot>
+            <tr>
+                <th>TOTAL</th>
+                <th>{{ total }}</th>
+            </tr>
+        </tfoot>
     </table>
 {% endblock %}
