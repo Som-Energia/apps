@@ -199,6 +199,20 @@ class Socio
             .$this->getPhone().' # '.$this->getMobile().' # '.$this->getEmail();
     }
 
+    public function isEqual(Socio $dest) {
+        return ($this->erpid == $dest->getErpid()
+            && $this->active == $dest->getActive()
+            && $this->name == $dest->getName()
+            && $this->ref == $dest->getRef()
+            && $this->vat == $dest->getVat()
+            && $this->phone == $dest->getPhone()
+            && $this->street == $dest->getStreet()
+            && $this->city == $dest->getCity()
+            && $this->zip == $dest->getZip()
+            && $this->mobile == $dest->getMobile()
+            && $this->email == $dest->getEmail());
+    }
+
     public function __toString()
     {
         return $this->getName() ? : '---';
