@@ -2,16 +2,13 @@
 namespace SomEnergia\SocioBundle\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Translator;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\PageBundle\Model\PageInterface;
-use Knp\Menu\ItemInterface as MenuItemInterface;
-
-use SomEnergia\SocioBundle\Entity\Socio;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 class SocioAdmin extends Admin
 {
@@ -69,5 +66,10 @@ class SocioAdmin extends Admin
             ->add('phone', null, array('label' => 'Teléfono'))
             ->add('mobile', null, array('label' => 'Móvil'))
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('create');
     }
 }

@@ -2,7 +2,6 @@
 namespace SomEnergia\AsambleaBundle\Admin;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Translation\Translator;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
