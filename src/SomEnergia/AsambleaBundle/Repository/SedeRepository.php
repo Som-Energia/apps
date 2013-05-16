@@ -5,10 +5,10 @@ use Doctrine\ORM\EntityRepository;
 
 class SedeRepository extends EntityRepository
 {
-    /*public function getActiveItemsSortedByPosition()
+    public function getAllItemsSortedByNombre()
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT c FROM FluxProductBundle:ActivityCategory c WHERE c.isActive = 1 ORDER BY c.position ASC')
+            ->createQuery('SELECT s FROM AsambleaBundle:Sede s ORDER BY s.nombre ASC')
             ->getResult();
-    }*/
+    }
 }

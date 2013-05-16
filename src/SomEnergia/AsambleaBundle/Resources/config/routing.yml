@@ -5,3 +5,7 @@ asamblea_homepage:
 asamblea_asistencia_informes:
     pattern: /admin/somenergia/asamblea/informe/choose
     defaults: { _controller: AsambleaBundle:Informe:choose }
+
+#asamblea_asistencia_informes_choose:
+#    pattern: /admin/somenergia/asamblea/informe/selected
+#    defaults: { _controller: AsambleaBundle:Informe:selected }
