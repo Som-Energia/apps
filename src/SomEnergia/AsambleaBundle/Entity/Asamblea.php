@@ -57,6 +57,11 @@ class Asamblea
         return $this->fecha;
     }
 
+    public function toStringLong()
+    {
+        return $this->getNombre() . ' · ' . date('d/m/Y', $this->getFecha()->getTimestamp());
+    }
+
     public function __toString()
     {
         return $this->getNombre() ? : '---';

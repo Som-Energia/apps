@@ -4,13 +4,19 @@
 {% block title %}{% endblock%}
 
 {% block footer %}
+    {% if app.session.hasFlash('info') %}
+        <div class="alert alert-success">{{ app.session.getFlash('info') }}</div>
+    {% endif %}
+    {% if app.session.hasFlash('error') %}
+        <div class="alert alert-error">{{ app.session.getFlash('error') }}</div>
+    {% endif %}
     <div class="btn-group" style="margin-bottom: 40px">
         <a class="btn btn-small" href="{{ path( 'sonata_admin_dashboard') }}">
             <i class="icon-circle-arrow-left"></i>
             Volver al menú principal
         </a>
     </div>
-    <h1>Consultar socio. Paso 1</h1>
+    <h1>Consultar socio. Paso 1/2</h1>
     <h4>Escribe alguno de los siguientes campos para consultar el socio.</h4>
     <form action="{{ path('asamblea_asistencia_nuevo_registro') }}" method="post" {{ form_enctype(form) }}>
         {{ form_widget(form) }}

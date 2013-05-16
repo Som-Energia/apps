@@ -26,7 +26,7 @@ class AsistenciaAdmin extends Admin
             ->add('_action', 'actions', array(
             'actions' => array(
                 //'view' => array(),
-                'edit' => array(),
+                //'edit' => array(),
             ),
             'label' => 'Acciones'))
         ;

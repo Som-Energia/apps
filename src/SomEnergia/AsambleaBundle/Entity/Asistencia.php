@@ -74,6 +74,6 @@ class Asistencia
 
     public function __toString()
     {
-        return $this->getId() ? : '---';
+        return $this->getId() ? $this->getId() : '---';
     }
 }

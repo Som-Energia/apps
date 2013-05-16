@@ -13,27 +13,58 @@
             Volver al menú anterior
         </a>
     </div>
-    <h1>Elegir socio. Paso 2</h1>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr class="sonata-ba-list-field-header">
-                <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Número</th>
-                <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">DNI</th>
-                <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Nombre</th>
-                <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">CP</th>
-                <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Población</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for socio in socios %}
-                <tr>
-                    <td>{{ socio.ref }}</td>
-                    <td>{{ socio.vat }}</td>
-                    <td>{{ socio.name }}</td>
-                    <td>{{ socio.zip }}</td>
-                    <td>{{ socio.city }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <h1>Elegir socio, sede y asamblea. Paso 2/2</h1>
+    {% if socios | length > 0 %}
+        <form action="{{ path('asamblea_asistencia_registro_seleccionado') }}" method="post">
+            <fieldset>
+                <legend>Socio</legend>
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="sonata-ba-list-field-header">
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch"></th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Número</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">DNI</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Nombre</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">CP</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Población</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for socio in socios %}
+                            <tr>
+                                <td><label class="radio"><input type="radio" name="optionSocio" id="socio-{{ socio.id }}" value="{{ socio.id }}" {% if loop.first %}checked="checked"{% endif %}></label></td>
+                                <td>{{ socio.ref }}</td>
+                                <td>{{ socio.vat }}</td>
+                                <td>{{ socio.name }}</td>
+                                <td>{{ socio.zip }}</td>
+                                <td>{{ socio.city }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </fieldset>
+            <fieldset>
+                <legend>Sede</legend>
+                {% for sede in sedes %}
+                    <label class="radio" {% if loop.last %}style="margin-bottom:20px"{% endif %}>
+                        <input type="radio" name="optionSede" id="sede-{{ sede.id }}" value="{{ sede.id }}" {% if loop.first %}checked="checked"{% endif %}>
+                        {{ sede.nombre }}
+                    </label>
+                {% endfor %}
+            </fieldset>
+            <fieldset>
+                <legend>Asamblea</legend>
+                {% for asamblea in asambleas %}
+                    <label class="radio" {% if loop.last %}style="margin-bottom:20px"{% endif %}>
+                        <input type="radio" name="optionAsamblea" id="asamblea-{{ asamblea.id }}" value="{{ asamblea.id }}" {% if loop.first %}checked="checked"{% endif %}>
+                        {{ asamblea.nombre }} · {{ asamblea.fecha | date('d/m/Y') }}
+                    </label>
+                {% endfor %}
+            </fieldset>
+            <input type="submit" class="btn btn-primary" name="save" value="Registrar">
+            <a class="btn btn-danger" href="{{ path('asamblea_asistencia_nuevo_registro') }}">Cancelar</a>
+        </form>
+    {% else %}
+        <p class="text-error">Lo sentimos, no se ha encontrado ningún socio con el filtro seleccionado.</p>
+    {% endif %}
 {% endblock %}

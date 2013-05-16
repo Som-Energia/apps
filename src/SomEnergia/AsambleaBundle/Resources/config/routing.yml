@@ -9,3 +9,7 @@ asamblea_asistencia_informes:
 asamblea_asistencia_nuevo_registro:
     pattern: /admin/somenergia/asistencia/nuevo
     defaults: { _controller: AsambleaBundle:Asistencia:nuevo }
+
+asamblea_asistencia_registro_seleccionado:
+    pattern: /admin/somenergia/asistencia/seleccionado
+    defaults: { _controller: AsambleaBundle:Asistencia:seleccionado }
