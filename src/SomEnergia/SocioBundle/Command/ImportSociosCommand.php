@@ -29,8 +29,9 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output) {
         $contenedor = $this->getContainer();
         $em = $contenedor->get('doctrine')->getEntityManager();
-        $row = 1; $right = 0; $wrong = 0;
-        $output->writeln('Leyendo archivo de entrada ' . $input->getArgument('archivo') . '...');
+        $row = 0; $right = 0; $wrong = 0;
+        $dtStart = new \DateTime();
+        $output->writeln('Leyendo archivo de entrada ' . $input->getArgument('archivo') . ' a las ' . date('h:m:s d/m/Y', $dtStart->getTimestamp()) . '...');
         if (($handle = fopen($input->getArgument('archivo'), "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $num = count($data);
@@ -78,9 +79,14 @@ EOT
                 $row++;
             }
             fclose($handle);
+            $dtEnd = new \DateTime();
+            $interval = $dtStart->diff($dtEnd);
+            $output->writeln('Proceso finalizado a las ' . date('h:m:s d/m/Y', $dtEnd->getTimestamp()));
             $output->writeln($right. ' socios registrados correctamente');
             $output->writeln($wrong. ' socios incorrectos');
-            $output->writeln('TOTAL: ' . $row . ' ITEMS');
+            $output->writeln('TOTAL: ' . $row . ' ITEMS GESTIONADOS');
+            $output->writeln('TIEMPO EMPLEADO: ' . $interval->format('%H:%S'));
+
         } else {
             $output->writeln('ERROR! Imposible leer archivo de entrada');
         }

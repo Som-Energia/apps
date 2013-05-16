@@ -53,6 +53,20 @@
                         </tr>
                     {% endif %}
                 {% endfor %}
+                {% if (group.label == 'Asambleas' and is_granted('ROLE_ADMINISTRADOR_ASAMBLEA')) %}
+                    <tr>
+                        <td class="sonata-ba-list-label">Informes</td>
+                        <td>
+                            <div class="btn-group">
+                                <a class="btn btn-small" href="{{ path( 'asamblea_asistencia_informes') }}">
+                                    <i class="icon-list-alt"></i>
+                                    Resultados asistencia
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+
                 </tbody>
             </table>
         {% endif %}
