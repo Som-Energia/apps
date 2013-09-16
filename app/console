@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Debug\Debug;
 use SomEnergia\MainBundle\Command\ImportPostalCodesCommand;
+use SomEnergia\SocioBundle\Command\ImportSociosCommand;
 
 $input = new ArgvInput();
 $env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
@@ -26,4 +27,5 @@ if ($debug) {
 $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
 $application->add(new importPostalCodesCommand);
+$application->add(new importSociosCommand);
 $application->run($input);

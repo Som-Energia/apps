@@ -14,14 +14,14 @@ use SomEnergia\SocioBundle\Entity\Socio;
 class ImportSociosCommand extends ContainerAwareCommand {
 
     protected function configure() {
-        $this->setName('socios:import')
+        $this->setName('somenergia:socios:import')
             ->setDefinition(array(
                 new InputArgument('archivo', InputArgument::REQUIRED, 'archivo')
             ))
             ->setDescription('Archivo CSV con socios')
             ->setHelp(
 <<<EOT
-El comando <info>socios:import</info> importa un archivo CSV de socios a la base datos. El archivo tiene que estar delimitado por comas, con campos encarrados entre comillas dobles y un salto de linea por cada registro. El formato de entrada de los campos debe ser: id, active, name, ref, vat, street, zip, city, phone, mobile y email.
+El comando <info>somenergia:socios:import</info> importa un archivo CSV de socios a la base datos. El archivo tiene que estar delimitado por comas, con campos encarrados entre comillas dobles y un salto de linea por cada registro. El formato de entrada de los campos debe ser: id, active, name, ref, vat, street, zip, city, phone, mobile y email.
 EOT
             );
     }
