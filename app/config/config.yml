@@ -103,6 +103,7 @@ sonata_admin:
             Usuarios:
             Asambleas:
             Socios:
+            Grupos locales:
 
 # DIC config
 services:
@@ -141,6 +142,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Socios, label: Socio }
         arguments: [null, SomEnergia\SocioBundle\Entity\Socio, SocioBundle:SocioAdmin]
+    somenergia.gruposlocales.cp:
+        class: SomEnergia\MainBundle\Admin\CodigoPostalAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Grupos locales, label: Códigos postales }
+        arguments: [null, SomEnergia\MainBundle\Entity\CodigoPostal, MainBundle:CodigoPostalAdmin]
     somenergia.sonata.custom.block.admin_list:
         class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
         arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]

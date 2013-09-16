@@ -85,4 +85,9 @@ class CodigoPostal
     {
         return $this->poblacion;
     }
+
+    public function __toString()
+    {
+        return $this->getPoblacion() ? $this->getCp() . ' ' . $this->getPoblacion() : '---';
+    }
 }

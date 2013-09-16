@@ -55,19 +55,22 @@ EOT
                         $output->writeln(' | <info>X record found and updated</info>');
                         $cp->setPoblacion($cpDB->getPoblacion());
                         $em->persist($cp);
+                        if ($input->getOption('force')) {
+                            $em->flush();
+                        }
                         $updated++;
                     }
                 } else {
                     $output->writeln(' | <info>√ new record added</info>');
                     $em->persist($cp);
+                    if ($input->getOption('force')) {
+                        $em->flush();
+                    }
                     $new++;
                 }
                 $row++;
             }
             fclose($handle);
-            if ($input->getOption('force')) {
-                $em->flush();
-            }
             $dtEnd = new \DateTime();
             $interval = $dtStart->diff($dtEnd);
             $output->writeln('Process finished at ' . date('h:m:s d/m/Y', $dtEnd->getTimestamp()));
@@ -77,7 +80,7 @@ EOT
             $output->writeln('TOTAL: ' . $row . ' ITEMS');
             $output->writeln('ELLAPSED TIME: ' . $interval->format('%H:%S'));
         } else {
-            $output->writeln('<error>ERROR! Imposible leer archivo de entrada</error>');
+            $output->writeln('<error>ERROR! Unable to read input file</error>');
         }
     }
 }
