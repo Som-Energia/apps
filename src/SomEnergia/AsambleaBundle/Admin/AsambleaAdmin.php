@@ -48,7 +48,7 @@ class AsambleaAdmin extends Admin
     {
         $formMapper
             ->add('nombre', 'text', array('label' => 'Nombre'))
-            ->add('fecha', 'date', array('label' => 'Fecha'))
+            ->add('fecha', 'genemu_jquerydate', array('label' => 'Fecha'))
         ;
     }
 

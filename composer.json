@@ -28,6 +28,7 @@
         "sonata-project/easy-extends-bundle": "2.1.*@dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "stof/doctrine-extensions-bundle": "dev-master",
+        "genemu/form-bundle": "2.2.*",
         "knplabs/knp-menu": "1.1.*@dev",
         "knplabs/knp-menu-bundle": "1.1.*@dev",
         "knplabs/knp-paginator-bundle": "dev-master"

@@ -25,6 +25,8 @@ class AppKernel extends Kernel
 
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+
             new FOS\UserBundle\FOSUserBundle(),
 
             new Sonata\jQueryBundle\SonatajQueryBundle(),

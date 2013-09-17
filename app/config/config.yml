@@ -71,6 +71,11 @@ swiftmailer:
     password:  %mailer_password%
     spool:     { type: memory }
 
+# Genemu Form Select 2 Bundle
+genemu_form:
+    select2: ~
+    date: ~
+
 # Sonata Block
 sonata_block:
     default_contexts: [cms]
