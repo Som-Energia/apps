@@ -102,7 +102,7 @@ sonata_admin:
     dashboard:
         blocks:
             - { position: left, type: somenergia.sonata.custom.block.admin_list }
-            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Bienvenido al administrador web de Som Energia</h2><p>Elige alguna de las acciones disponibles para tu usuario.</p>" } }
+            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Bienvenido al administrador de Som Energia</h2><p>Elige una acción del menú para continuar.</p>" } }
         groups:
             Emails:
             Usuarios:

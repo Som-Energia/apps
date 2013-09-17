@@ -5,6 +5,7 @@
             or (group.label == 'Usuarios' and is_granted('ROLE_SUPER_ADMINISTRADOR'))
             or (group.label == 'Asambleas' and is_granted('ROLE_ADMINISTRADOR_ASAMBLEA'))
             or (group.label == 'Socios' and is_granted('ROLE_SUPER_ADMINISTRADOR'))
+            or (group.label == 'Grupos locales' and is_granted('ROLE_SUPER_ADMINISTRADOR'))
         %}
             <table class="table table-bordered table-striped sonata-ba-list">
                 <thead>
