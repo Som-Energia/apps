@@ -2,6 +2,7 @@
 namespace SomEnergia\GrupoLocalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -25,6 +26,16 @@ class GrupoLocal
      */
     protected $nombre;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="SomEnergia\MainBundle\Entity\CodigoPostal", inversedBy="gruposLocales")
+     * @ORM\JoinTable(name="somenergia_grupo_local_codigo_postal")
+     */
+    protected $codigosPostales;
+
+
+    public function __construct() {
+        $this->codigosPostales = new ArrayCollection();
+    }
 
     /**
      * Get id
