@@ -58,4 +58,9 @@ class GrupoLocal
     {
         return $this->nombre;
     }
+
+    public function __toString()
+    {
+        return $this->getNombre() ? $this->getNombre() : '---';
+    }
 }

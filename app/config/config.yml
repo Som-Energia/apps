@@ -145,8 +145,13 @@ services:
     somenergia.gruposlocales.cp:
         class: SomEnergia\MainBundle\Admin\CodigoPostalAdmin
         tags:
-            - { name: sonata.admin, manager_type: orm, group: Grupos locales, label: Códigos postales }
+            - { name: sonata.admin, manager_type: orm, group: Grupos locales, label: Código postal }
         arguments: [null, SomEnergia\MainBundle\Entity\CodigoPostal, MainBundle:CodigoPostalAdmin]
+    somenergia.gruposlocales.grupolocal:
+        class: SomEnergia\GrupoLocalBundle\Admin\GrupoLocalAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Grupos locales, label: Grupo local }
+        arguments: [null, SomEnergia\GrupoLocalBundle\Entity\GrupoLocal, GrupoLocalBundle:GrupoLocalAdmin]
     somenergia.sonata.custom.block.admin_list:
         class: SomEnergia\MainBundle\Block\CustomDashboardBlockService
         arguments: [ "somenergia.sonata.custom.block.admin_list", @templating, @sonata.admin.pool ]
