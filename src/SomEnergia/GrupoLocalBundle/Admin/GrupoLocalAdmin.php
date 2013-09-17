@@ -39,6 +39,11 @@ class GrupoLocalAdmin extends Admin
     {
         $datagridMapper
             ->add('nombre', null, array('label' => 'Nombre'))
+            ->add('codigosPostales', 'genemu_jqueryselect2_entity', array(
+                'label' => 'Códigos postales',
+                'class' => 'SomEnergia\MainBundle\Entity\CodigoPostal',
+                'property' => 'cp'
+            ))
         ;
     }
 
