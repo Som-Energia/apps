@@ -8,8 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\PageBundle\Model\PageInterface;
-use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use SomEnergia\AsambleaBundle\Entity\Asamblea;
 
@@ -18,9 +17,9 @@ class AsambleaAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-        ->add('id')
+        //->add('id')
         ->addIdentifier('nombre', null, array('label' => 'Nombre'))
-        ->add('fecha', null, array('label' => 'Fecha'))
+        ->add('fecha', null, array('label' => 'Fecha', 'template' => 'AsambleaBundle:Asamblea:custom.asamblea.fecha.admin.html.twig'))
         // add custom action links
             ->add('_action', 'actions', array(
             'actions' => array(
@@ -51,5 +50,11 @@ class AsambleaAdmin extends Admin
             ->add('nombre', 'text', array('label' => 'Nombre'))
             ->add('fecha', 'date', array('label' => 'Fecha'))
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //$collection->remove('create');
+        $collection->remove('delete');
     }
 }

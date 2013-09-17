@@ -8,8 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\PageBundle\Model\PageInterface;
-use Knp\Menu\ItemInterface as MenuItemInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use SomEnergia\AsambleaBundle\Entity\Sede;
 
@@ -18,7 +17,7 @@ class SedeAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-        ->add('id')
+        //->add('id')
         ->addIdentifier('nombre', null, array('label' => 'Nombre'))
         // add custom action links
             ->add('_action', 'actions', array(
@@ -49,5 +48,11 @@ class SedeAdmin extends Admin
         $formMapper
             ->add('nombre', 'text', array('label' => 'Nombre'))
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //$collection->remove('create');
+        $collection->remove('delete');
     }
 }
