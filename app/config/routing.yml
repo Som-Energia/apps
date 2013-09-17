@@ -1,3 +1,7 @@
+grupo_local:
+    resource: "@GrupoLocalBundle/Resources/config/routing.yml"
+    prefix:   /
+
 socio:
     resource: "@SocioBundle/Resources/config/routing.yml"
     prefix:   /

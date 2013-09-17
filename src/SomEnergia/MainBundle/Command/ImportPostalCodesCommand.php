@@ -53,8 +53,8 @@ EOT
                         $noupdated++;
                     } else {
                         $output->writeln(' | <info>X record found and updated</info>');
-                        $cp->setPoblacion($cpDB->getPoblacion());
-                        $em->persist($cp);
+                        $cpDB->setPoblacion($cp->getPoblacion());
+                        $em->persist($cpDB);
                         if ($input->getOption('force')) {
                             $em->flush();
                         }
