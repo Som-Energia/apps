@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use SomeEnergia\MailBundle\Entity\Aliases;
 
@@ -16,10 +17,10 @@ class AliasesAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('pkid', null, array('label' => 'ID'))
+            //->add('pkid', null, array('label' => 'ID'))
             ->addIdentifier('mail', null, array('label' => 'Email'))
             ->add('destination', null, array('label' => 'Desvíos'))
-            ->add('enabled', 'boolean', array('label' => 'Activo'))
+            ->add('enabled', 'boolean', array('label' => 'Activo', 'editable' => true))
             ->add('_action', 'actions', array(
                 'actions' => array(
                 //'view' => array(),
@@ -62,5 +63,11 @@ class AliasesAdmin extends Admin
             ->setHelps(array(
                 'destination' => 'Introduce múltiples direcciones separadas por comas'))
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //$collection->remove('create');
+        $collection->remove('delete');
     }
 }
