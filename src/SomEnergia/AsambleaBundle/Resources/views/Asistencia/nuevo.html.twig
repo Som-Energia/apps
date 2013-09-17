@@ -1,9 +1,11 @@
-{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
-{# extends 'MainBundle:SonataAdmin:somenergia_custom_layout.html.twig' #}
+{# extends 'SonataAdminBundle::standard_layout.html.twig' #}
+{% extends 'MainBundle:SonataAdmin:somenergia_custom_layout.html.twig' %}
+
+{% block breadcrumb %}{{ parent() }}{% endblock %}
 
 {% block title %}{% endblock%}
 
-{% block footer %}
+{% block sonata_admin_content %}
     {% if app.session.flashbag.has('info') %}
         <div class="alert alert-success">{{ app.session.flashbag.get('info') }}</div>
     {% endif %}
@@ -23,3 +25,5 @@
         <input class="btn btn-primary" type="submit" value="Consultar">
     </form>
 {% endblock %}
+
+{% block footer %}{% endblock %}

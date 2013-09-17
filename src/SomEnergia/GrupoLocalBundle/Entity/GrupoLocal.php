@@ -32,7 +32,6 @@ class GrupoLocal
      */
     protected $codigosPostales;
 
-
     public function __construct() {
         $this->codigosPostales = new ArrayCollection();
     }
