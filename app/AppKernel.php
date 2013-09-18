@@ -27,6 +27,8 @@ class AppKernel extends Kernel
 
             new Genemu\Bundle\FormBundle\GenemuFormBundle(),
 
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+
             new FOS\UserBundle\FOSUserBundle(),
 
             new Sonata\jQueryBundle\SonatajQueryBundle(),
