@@ -26,6 +26,7 @@ class GrupoLocalAdmin extends Admin
                     //'view' => array(),
                     'edit' => array(),
                     'addPostalCodes' => array('template' => 'GrupoLocalBundle:Admin:add-postal-codes-icon.html.twig'),
+                    'removePostalCodes' => array('template' => 'GrupoLocalBundle:Admin:remove-postal-codes-icon.html.twig'),
                 ),
                 'label' => 'Acciones'))
         ;
@@ -71,6 +72,7 @@ class GrupoLocalAdmin extends Admin
     {
         $collection->add('addPostalCodes', $this->getRouterIdParameter().'/add-postal-codes');
         $collection->add('addPostalCodesStep2', $this->getRouterIdParameter().'/add-postal-codes-step-2');
+        $collection->add('removePostalCodes', $this->getRouterIdParameter().'/remove-postal-codes');
         //$collection->remove('create');
         $collection->remove('delete');
     }
