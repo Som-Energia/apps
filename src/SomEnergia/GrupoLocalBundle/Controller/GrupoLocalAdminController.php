@@ -26,6 +26,7 @@ class GrupoLocalAdminController extends Controller
                     'grupolocal' => $grupoLocal,
                     'form' => $form->createView(),
                     'codigosPostales' => $codigosPostales,
+                    'searchedPostalCodes' => $data['cp'],
                 ));
             }
         }
@@ -39,6 +40,28 @@ class GrupoLocalAdminController extends Controller
 
     public function addPostalCodesStep2Action($id)
     {
+        $request = $this->getRequest();
+        $em = $this->getDoctrine()->getManager();
+        /** @var GrupoLocal $grupoLocal */
+        $grupoLocal = $em->getRepository('GrupoLocalBundle:GrupoLocal')->find($id);
+        $codigosPostales = $request->request->get('optionCP');
 
+        foreach ($codigosPostales as $codigoPostal) {
+            $codigoPostalDB = $em->getRepository('MainBundle:CodigoPostal')->find($codigoPostal);
+            if ($codigoPostalDB) {
+                $grupoLocal->addCodigosPostale($codigoPostalDB);
+            }
+        }
+
+        /*if (count($codigosPostales) > 0) {
+            $this->container->get('session')->getFlashBag()->add('info', 'Se han añadido ' . count($codigosPostales) . ' códigos postales al grupo local correctamente');
+        } else {
+            $this->container->get('session')->getFlashBag()->add('error', 'No has añadido ningún código postal al grupo local');
+        }*/
+
+        $em->persist($grupoLocal);
+        $em->flush();
+
+        return $this->redirect('../list');
     }
 }

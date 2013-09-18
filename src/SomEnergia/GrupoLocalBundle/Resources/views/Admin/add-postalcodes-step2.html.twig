@@ -1,0 +1,73 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block title %}
+    {{ "Añadir códigos postales" | trans }}
+{% endblock%}
+
+{% block actions %}
+    <div class="sonata-actions">
+        <ul>
+            {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
+                <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('edit', {id : grupolocal.id}) }}">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            {# endif #}
+            {# if admin.hasroute('list') and admin.isGranted('LIST') #}
+                <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            {# endif #}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block sonata_admin_content %}
+    {% if app.session.flashbag.has('info') %}
+        <div class="alert alert-success">{{ app.session.flashbag.get('info') }}</div>
+    {% endif %}
+    {% if app.session.flashbag.has('error') %}
+        <div class="alert alert-error">{{ app.session.flashbag.get('error') }}</div>
+    {% endif %}
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>Añadir códigos postales al grupo local de {{ grupolocal.nombre }}</h3>
+            <h4>Paso 2. Elige los códigos postales que deseas añadir.</h4>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10">
+            {% if codigosPostales | length > 0 %}
+                <form action="{{ path('admin_somenergia_grupolocal_grupolocal_addPostalCodesStep2', { id : grupolocal.id }) }}" method="post" {{ form_enctype(form) }}>
+                    <table class="table table-bordered table-striped">
+                        <thead>
+                        <tr class="sonata-ba-list-field-header">
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch"></th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Código postal</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Población</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for codigoPostal in codigosPostales %}
+                                {% if not grupolocal.hasPostalCode(codigoPostal.id) %}
+                                    <tr>
+                                        <td><label class="checkbox"><input type="checkbox" name="optionCP[]" id="cp-{{ codigoPostal.id }}" value="{{ codigoPostal.id }}" checked="checked"></label></td>
+                                        <td>{{ codigoPostal.cp }}</td>
+                                        <td>{{ codigoPostal.poblacion }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <input class="btn btn-primary" type="submit" name="save" value="Añadir">
+                    <a class="btn btn-danger" href="{{ path('admin_somenergia_grupolocal_grupolocal_addPostalCodes', { id : grupolocal.id }) }}">Volver a buscar</a>
+                </form>
+            {% else %}
+                <div class="alert alert-error">Lo sentimos, no existe ningún código postal registrado que empieze por '{{ searchedPostalCodes }}'</div>
+                <a class="btn btn-danger" href="{{ path('admin_somenergia_grupolocal_grupolocal_addPostalCodes', { id : grupolocal.id }) }}">Volver a buscar</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

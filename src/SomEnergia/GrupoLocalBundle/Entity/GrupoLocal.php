@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use SomEnergia\MainBundle\Entity\CodigoPostal;
 
 /**
  * @ORM\Entity
@@ -105,5 +106,27 @@ class GrupoLocal
     public function getCodigosPostales()
     {
         return $this->codigosPostales;
+    }
+
+    /**
+     * Determina si el ID del codigo postal pasado por parametro
+     *  existe dentro de la coleccion de codigos postales que pertenecen al grupo local
+     *
+     * @param $pcid
+     * @return bool
+     */
+    public function hasPostalCode($pcid)
+    {
+        $found = false;
+        $postalCodes = $this->getCodigosPostales();
+        /** @var CodigoPostal $postalCode */
+        foreach ($postalCodes as $postalCode) {
+            if ($postalCode->getId() == $pcid) {
+                $found = true;
+                break;
+            }
+        }
+
+        return $found;
     }
 }
