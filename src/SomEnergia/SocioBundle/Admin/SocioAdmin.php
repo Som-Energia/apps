@@ -71,6 +71,7 @@ class SocioAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('relatedlist', 'related-list');
+        $collection->add('exportrelatedlist', 'export-related-list');
         $collection->remove('create');
         $collection->remove('delete');
     }

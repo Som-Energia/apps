@@ -13,6 +13,10 @@
 {% block actions %}
     <div class="sonata-actions">
         <ul>
+            <li class="btn sonata-action-element"><a href="{{ path('sonata_admin_dashboard') }}">Volver al panel</a></li>
+            {% if socios | length > 0 %}
+                <li class="btn sonata-action-element"><a href="{{ path('admin_somenergia_socio_socio_exportrelatedlist') }}">Exportar a XLS</a></li>
+            {% endif %}
             {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
             <!-- li class="btn sonata-action-element"><a href="">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
             {# endif #}
@@ -32,7 +36,7 @@
     {% endif %}
     <div class="row-fluid">
         <div class="span10">
-            <h3>Consulta socios de grupo local</h3>
+            <h3>Consulta socios del grupo local de {{ grupoLocal }}</h3>
         </div>
     </div>
     <div class="row-fluid">
@@ -40,6 +44,35 @@
             <h4>Usuario: {{ app.user.username }}</h4>
             <h4>Email: {{ app.user.email }}</h4>
             <h4>Grupo local relacionado: {{ glid }} · {{ grupoLocal }}</h4>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10">
+            {% if socios | length > 0 %}
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr class="sonata-ba-list-field-header">
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Número</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Nombre</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Email</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Idioma</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for socio in socios %}
+                            <tr>
+                                <td>{{ socio.ref }}</td>
+                                <td>{{ socio.name }}</td>
+                                <td><a href="mailto:{{ socio.email }}">{{ socio.email }}</a></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-error">Lo sentimos, no existe ningún socio registrado en el grupo local.</div>
+                <a class="btn btn-danger" href="{{ path('sonata_admin_dashboard') }}">Cancelar</a>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

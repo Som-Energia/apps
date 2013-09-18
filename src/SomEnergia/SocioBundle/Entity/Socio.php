@@ -3,8 +3,10 @@ namespace SomEnergia\SocioBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection as ACollection;
+use Doctrine\Common\Collections\Collection as CCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use SomEnergia\MainBundle\Entity\CodigoPostal;
 
 /**
  * @ORM\Entity
@@ -211,6 +213,20 @@ class Socio
             && $this->zip == $dest->getZip()
             && $this->mobile == $dest->getMobile()
             && $this->email == $dest->getEmail());
+    }
+
+    public function containsAZipCodeOf(CCollection $zipCodes)
+    {
+        $found = false;
+        /** @var CodigoPostal $zipCode */
+        foreach ($zipCodes as $zipCode) {
+            if ($zipCode->getCp() == $this->getZip()) {
+                $found = true;
+                break;
+            }
+        }
+
+        return $found;
     }
 
     public function __toString()
