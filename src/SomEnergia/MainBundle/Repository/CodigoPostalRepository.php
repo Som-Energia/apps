@@ -5,10 +5,11 @@ use Doctrine\ORM\EntityRepository;
 
 class CodigoPostalRepository extends EntityRepository
 {
-/*    public function getAllItemsSortedByNombre()
+    public function findItemsThatStartWith($str)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT s FROM AsambleaBundle:Sede s ORDER BY s.nombre ASC')
+            ->createQuery('SELECT c FROM MainBundle:CodigoPostal c WHERE c.cp LIKE :str ORDER BY c.cp ASC')
+            ->setParameter('str', $str . '%')
             ->getResult();
-    }*/
+    }
 }

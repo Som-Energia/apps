@@ -70,6 +70,7 @@ class GrupoLocalAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('addPostalCodes', $this->getRouterIdParameter().'/add-postal-codes');
+        $collection->add('addPostalCodesStep2', $this->getRouterIdParameter().'/add-postal-codes-step-2');
         //$collection->remove('create');
         $collection->remove('delete');
     }
