@@ -8,6 +8,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use SomEnergia\GrupoLocalBundle\Entity\GrupoLocal;
 
@@ -18,7 +19,7 @@ class GrupoLocalAdmin extends Admin
         $listMapper
             //->add('id')
             ->addIdentifier('nombre', null, array('label' => 'Nombre'))
-            //->add('poblacion', null, array('label' => 'Población'))
+            ->add('codigosPostales', null, array('label' => 'Códigos postales'))
             // add custom action links
             ->add('_action', 'actions', array(
                 'actions' => array(
@@ -39,12 +40,12 @@ class GrupoLocalAdmin extends Admin
     {
         $datagridMapper
             ->add('nombre', null, array('label' => 'Nombre'))
-            ->add('codigosPostales', null, array(
+            /*->add('codigosPostales', null, array(
                 'label' => 'Códigos postales',
                 'class' => 'SomEnergia\MainBundle\Entity\CodigoPostal',
                 'property' => 'cp',
                 'multiple' => true,
-            ))
+            ))*/
         ;
     }
 
@@ -52,6 +53,22 @@ class GrupoLocalAdmin extends Admin
     {
         $formMapper
             ->add('nombre', null, array('label' => 'Nombre'))
+            /*->add('codigosPostales', 'genemu_jqueryselect2_entity', array(
+                'label' => 'Códigos postales',
+                'required' => false,
+                'class' => 'SomEnergia\MainBundle\Entity\CodigoPostal',
+                'multiple' => true,
+                'configs'  => array(
+                    'placeholder' => 'none',
+                    'allowClear'  => true,
+                )
+            ))*/
         ;
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //$collection->remove('create');
+        $collection->remove('delete');
     }
 }

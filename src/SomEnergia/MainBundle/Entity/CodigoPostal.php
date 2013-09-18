@@ -101,4 +101,37 @@ class CodigoPostal
     {
         return $this->getPoblacion() ? $this->getCp() . ' ' . $this->getPoblacion() : '---';
     }
+
+    /**
+     * Add gruposLocales
+     *
+     * @param \SomEnergia\GrupoLocalBundle\Entity\GrupoLocal $gruposLocales
+     * @return CodigoPostal
+     */
+    public function addGruposLocale(\SomEnergia\GrupoLocalBundle\Entity\GrupoLocal $gruposLocales)
+    {
+        $this->gruposLocales[] = $gruposLocales;
+    
+        return $this;
+    }
+
+    /**
+     * Remove gruposLocales
+     *
+     * @param \SomEnergia\GrupoLocalBundle\Entity\GrupoLocal $gruposLocales
+     */
+    public function removeGruposLocale(\SomEnergia\GrupoLocalBundle\Entity\GrupoLocal $gruposLocales)
+    {
+        $this->gruposLocales->removeElement($gruposLocales);
+    }
+
+    /**
+     * Get gruposLocales
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGruposLocales()
+    {
+        return $this->gruposLocales;
+    }
 }

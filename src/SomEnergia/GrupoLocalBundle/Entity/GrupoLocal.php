@@ -73,4 +73,37 @@ class GrupoLocal
     {
         return $this->getNombre() ? $this->getNombre() : '---';
     }
+
+    /**
+     * Add codigosPostales
+     *
+     * @param \SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales
+     * @return GrupoLocal
+     */
+    public function addCodigosPostale(\SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales)
+    {
+        $this->codigosPostales[] = $codigosPostales;
+    
+        return $this;
+    }
+
+    /**
+     * Remove codigosPostales
+     *
+     * @param \SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales
+     */
+    public function removeCodigosPostale(\SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales)
+    {
+        $this->codigosPostales->removeElement($codigosPostales);
+    }
+
+    /**
+     * Get codigosPostales
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCodigosPostales()
+    {
+        return $this->codigosPostales;
+    }
 }
