@@ -1,0 +1,43 @@
+{% extends 'MainBundle:SonataAdmin:somenergia_custom_layout.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block title %}
+    {{ "Consulta socios grupo local" | trans }}
+{% endblock%}
+
+{% block actions %}
+    <div class="sonata-actions">
+        <ul>
+            {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
+            <!-- li class="btn sonata-action-element"><a href="">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            {# endif #}
+            {# if admin.hasroute('list') and admin.isGranted('LIST') #}
+            <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            {# endif #}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block sonata_admin_content %}
+    {% if app.session.flashbag.has('info') %}
+        <div class="alert alert-success">{{ app.session.flashbag.get('info') }}</div>
+    {% endif %}
+    {% if app.session.flashbag.has('error') %}
+        <div class="alert alert-error">{{ app.session.flashbag.get('error') }}</div>
+    {% endif %}
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>Consulta socios de grupo local</h3>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10">
+        </div>
+    </div>
+
+{% endblock %}
