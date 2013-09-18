@@ -44,6 +44,7 @@
             <h4>Usuario: {{ app.user.username }}</h4>
             <h4>Email: {{ app.user.email }}</h4>
             <h4>Grupo local relacionado: {{ glid }} · {{ grupoLocal }}</h4>
+            <h4>{{ socios | length }} socios registrados</h4>
         </div>
     </div>
     <div class="row-fluid">
@@ -64,7 +65,7 @@
                                 <td>{{ socio.ref }}</td>
                                 <td>{{ socio.name }}</td>
                                 <td><a href="mailto:{{ socio.email }}">{{ socio.email }}</a></td>
-                                <td></td>
+                                <td>{{ socio.language }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

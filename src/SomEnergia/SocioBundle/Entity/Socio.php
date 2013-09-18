@@ -79,6 +79,11 @@ class Socio
      */
     protected $email;
 
+    /**
+     * @ORM\Column(type="string", length=32, nullable=true)
+     */
+    protected $language;
+
     public function getId()
     {
         return $this->id;
@@ -192,6 +197,16 @@ class Socio
     public function getZip()
     {
         return $this->zip;
+    }
+
+    public function setLanguage($language)
+    {
+        $this->language = $language;
+    }
+
+    public function getLanguage()
+    {
+        return $this->language;
     }
 
     public function toLongString()
