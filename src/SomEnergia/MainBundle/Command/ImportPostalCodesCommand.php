@@ -48,18 +48,8 @@ EOT
                 /** @var CodigoPostal $cpDB */
                 $cpDB = $em->getRepository('MainBundle:CodigoPostal')->findOneByCp($cp->getCp());
                 if (!is_null($cpDB)) {
-                    if ($cp->getPoblacion() == $cpDB->getPoblacion()) {
-                        $output->writeln(' | <error>X record found and nothing updated</error>');
-                        $noupdated++;
-                    } else {
-                        $output->writeln(' | <info>X record found and updated</info>');
-                        $cpDB->setPoblacion($cp->getPoblacion());
-                        $em->persist($cpDB);
-                        if ($input->getOption('force')) {
-                            $em->flush();
-                        }
-                        $updated++;
-                    }
+                    $output->writeln(' | <error>X record found</error>');
+                    $noupdated++;
                 } else {
                     $output->writeln(' | <info>√ new record added</info>');
                     $em->persist($cp);
