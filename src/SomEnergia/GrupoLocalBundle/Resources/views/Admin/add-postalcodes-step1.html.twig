@@ -1,0 +1,34 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block breadcrumb %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+{% block title %}
+    {{ "Añadir códigos postales" | trans }}
+{% endblock%}
+
+{% block actions %}
+    <div class="sonata-actions">
+        <ul>
+            {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
+                <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('edit', {id : grupolocal.id}) }}">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            {# endif #}
+            {% if admin.hasroute('list') and admin.isGranted('LIST') %}
+                <li class="btn sonata-action-element"><a href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% block sonata_admin_content %}
+    <div class="row-fluid">
+        <div class="span10">
+            <h3>Añadir códigos postales al grupo local de {{ grupolocal.nombre }}</h3>
+            <h4>Paso 1. Escribre los dígitos iniciales de los códigos postales que deseas añadir.</h4>
+        </div>
+    </div>
+
+{% endblock %}
