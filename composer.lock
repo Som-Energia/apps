@@ -1997,12 +1997,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "f670a436692fee5acbe1d720c23f9bb6645058cd"
+                "reference": "8db870931fca7b6aa5f6d335db3399595c40330f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/f670a436692fee5acbe1d720c23f9bb6645058cd",
-                "reference": "f670a436692fee5acbe1d720c23f9bb6645058cd",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/8db870931fca7b6aa5f6d335db3399595c40330f",
+                "reference": "8db870931fca7b6aa5f6d335db3399595c40330f",
                 "shasum": ""
             },
             "require": {
@@ -2045,7 +2045,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2013-09-13 13:56:15"
+            "time": "2013-09-18 17:50:53"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
