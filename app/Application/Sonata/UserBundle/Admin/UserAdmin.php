@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\UserBundle\Model\UserInterface;
+use Sonata\AdminBundle\Route\RouteCollection;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 
@@ -26,7 +27,8 @@ class UserAdmin extends SonataUserAdmin
         $listMapper
             ->addIdentifier('username')
             ->add('email')
-            ->add('groups')
+            ->add('groups', null, array('label' => 'Perfiles'))
+            ->add('grupoLocal', null, array('label' => 'Grupo local'))
             ->add('enabled', null, array('editable' => true))
             //->add('locked', null, array('editable' => true))
             //->add('createdAt')
@@ -67,7 +69,7 @@ class UserAdmin extends SonataUserAdmin
             ->with('Groups')
             ->add('groups')
             ->end()
-            ->with('Profile')
+            /*->with('Profile')
             ->add('dateOfBirth')
             ->add('firstname')
             ->add('lastname')
@@ -78,7 +80,7 @@ class UserAdmin extends SonataUserAdmin
             ->add('timezone')
             ->add('phone')
             ->end()
-            /*->with('Social')
+            ->with('Social')
             ->add('facebookUid')
             ->add('facebookName')
             ->add('twitterUid')
@@ -103,11 +105,12 @@ class UserAdmin extends SonataUserAdmin
             ->add('username')
             ->add('email')
             ->add('plainPassword', 'text', array('required' => false))
+            ->add('grupoLocal', null, array('label' => 'Grupo local'))
             ->end()
             ->with('Groups')
-            ->add('groups', 'sonata_type_model', array('required' => false, 'expanded' => true, 'multiple' => true))
+            ->add('groups', 'sonata_type_model', array('label' => 'Perfiles','required' => false, 'expanded' => true, 'multiple' => true))
             ->end()
-            ->with('Profile')
+            /*->with('Profile')
             ->add('dateOfBirth', 'birthday', array('required' => false))
             ->add('firstname', null, array('required' => false))
             ->add('lastname', null, array('required' => false))
@@ -126,7 +129,7 @@ class UserAdmin extends SonataUserAdmin
             ->add('timezone', 'timezone', array('required' => false))
             ->add('phone', null, array('required' => false))
             ->end()
-            /*->with('Social')
+            ->with('Social')
             ->add('facebookUid', null, array('required' => false))
             ->add('facebookName', null, array('required' => false))
             ->add('twitterUid', null, array('required' => false))
@@ -158,6 +161,12 @@ class UserAdmin extends SonataUserAdmin
             ->add('twoStepVerificationCode', null, array('required' => false))
             ->end()
         ;*/
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        //$collection->remove('create');
+        $collection->remove('delete');
     }
 
     /**
