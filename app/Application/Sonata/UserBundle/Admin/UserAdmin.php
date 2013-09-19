@@ -49,6 +49,7 @@ class UserAdmin extends SonataUserAdmin
             ->add('username')
             //->add('locked')
             ->add('email')
+            //->add('grupoLocal')
             //->add('groups')
         ;
     }
