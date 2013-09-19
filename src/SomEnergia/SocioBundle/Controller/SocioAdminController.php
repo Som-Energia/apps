@@ -9,10 +9,10 @@ class SocioAdminController extends Controller
 {
     public function relatedListAction()
     {
-        $glid = 1;
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         /** @var GrupoLocal $grupoLocal */
-        $grupoLocal = $em->getRepository('GrupoLocalBundle:GrupoLocal')->find($glid);
+        $grupoLocal = $user->getGrupoLocal();
         /** @var array $socios */
         $sociosDB = $em->getRepository('SocioBundle:Socio')->findAll();
         $socios = array();
@@ -24,7 +24,6 @@ class SocioAdminController extends Controller
         }
 
         return $this->render('SocioBundle:Admin:relatedlist.html.twig', array(
-            'glid' => $glid,
             'grupoLocal' => $grupoLocal,
             'socios' => $socios,
         ));
@@ -32,10 +31,10 @@ class SocioAdminController extends Controller
 
     public function exportRelatedListAction()
     {
-        $glid = 1;
+        $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         /** @var GrupoLocal $grupoLocal */
-        $grupoLocal = $em->getRepository('GrupoLocalBundle:GrupoLocal')->find($glid);
+        $grupoLocal = $user->getGrupoLocal();
         /** @var array $socios */
         $sociosDB = $em->getRepository('SocioBundle:Socio')->findAll();
         $row = 1;
