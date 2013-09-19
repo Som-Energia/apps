@@ -67,17 +67,11 @@ class SocioAdminController extends Controller
         }
         $excelService->excelObj->getActiveSheet()->setTitle('Socios');
         $excelService->excelObj->setActiveSheetIndex(0);
-
         //create the response
         $response = $excelService->getResponse();
         $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
         $response->headers->set('Content-Disposition', 'attachment;filename=socios-export-' . date('Y-m-d') . '.xls');
 
-        /* If you are using a https connection, you have to set those two headers and use sendHeaders() for compatibility with IE <9
-        $response->headers->set('Pragma', 'public');
-        $response->headers->set('Cache-Control', 'maxage=1');
-        $response->sendHeaders();*/
         return $response;
-        //return $this->redirect('related-list');
     }
 }
