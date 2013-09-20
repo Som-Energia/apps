@@ -227,7 +227,8 @@ class Socio
             && $this->city == $dest->getCity()
             && $this->zip == $dest->getZip()
             && $this->mobile == $dest->getMobile()
-            && $this->email == $dest->getEmail());
+            && $this->email == $dest->getEmail()
+            && $this->language == $dest->getLanguage());
     }
 
     public function containsAZipCodeOf(CCollection $zipCodes)

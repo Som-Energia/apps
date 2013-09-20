@@ -35,10 +35,11 @@ EOT
         if (($handle = fopen($input->getArgument('archivo'), "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $num = count($data);
-                if ($num == 11) {
+                if ($num == 12) {
                     $socio = new Socio();
                     $socio->setErpid($data[0]);
-                    if ($data[1] == 't') { $socio->setActive(true); } else { $socio->setActive(false); }
+                    $socio->setActive(false);
+                    if ($data[1] == 't') $socio->setActive(true);
                     $socio->setName($data[2]);
                     $socio->setRef($data[3]);
                     $socio->setVat($data[4]);
@@ -48,6 +49,7 @@ EOT
                     $socio->setPhone($data[8]);
                     $socio->setMobile($data[9]);
                     $socio->setEmail($data[10]);
+                    $socio->setLanguage($data[11]);
                     //$output->writeln($socio->toLongString());
                     $output->write('Importando socio ERPID:' . $socio->getErpid() . '... ');
                     $query = $em->createQuery('SELECT s FROM SocioBundle:Socio s WHERE s.erpid = :erpid');
