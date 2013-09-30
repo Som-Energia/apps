@@ -269,7 +269,7 @@ class Socio
             && $this->email == $dest->getEmail()
             && $this->language == $dest->getLanguage()
             && $this->fechaAlta == $dest->getFechaAlta()
-            && $this->fechaBaja == $dest->getFechaBaja()
+            //&& $this->fechaBaja == $dest->getFechaBaja()
         ;
     }
 

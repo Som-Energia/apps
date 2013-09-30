@@ -22,7 +22,7 @@ class ImportSociosCommand extends ContainerAwareCommand {
             ->addOption('force', null, InputOption::VALUE_NONE, 'If set, the task will save changes to database')
             ->setHelp(
 <<<EOT
-El comando <info>somenergia:socios:import</info> importa un archivo CSV de socios a la base datos. El archivo tiene que estar delimitado por comas, con campos encarrados entre comillas dobles y un salto de linea por cada registro. El formato de entrada de los campos debe ser: id, active, name, ref, vat, street, zip, city, phone, mobile, email, language, fecha alta i fecha baja.
+El comando <info>somenergia:socios:import</info> importa un archivo CSV de socios a la base datos. El archivo tiene que estar delimitado por comas, con campos encarrados entre comillas dobles y un salto de linea por cada registro. El formato de entrada de los campos debe ser: id, active, name, ref, vat, street, zip, city, phone, mobile, email, language y fecha alta.
 EOT
             );
     }
@@ -40,7 +40,7 @@ EOT
         if (($handle = fopen($input->getArgument('archivo'), "r")) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
                 $num = count($data);
-                if ($num == 14) {
+                if ($num == 13) {
                     $socio = new Socio();
                     $socio->setErpid($data[0]);
                     $socio->setActive(false);
@@ -56,7 +56,7 @@ EOT
                     $socio->setEmail($data[10]);
                     $socio->setLanguage($data[11]);
                     $socio->setFechaAlta(\DateTime::createFromFormat('Y-m-d', $data[12]));
-                    $socio->setFechaBaja(\DateTime::createFromFormat('Y-m-d', $data[13]));
+                    //$socio->setFechaBaja(\DateTime::createFromFormat('Y-m-d', $data[13]));
                     //$output->writeln($socio->toLongString());
                     $output->write('Importando socio ERPID:' . $socio->getErpid() . '... ');
                     $query = $em->createQuery('SELECT s FROM SocioBundle:Socio s WHERE s.erpid = :erpid');
@@ -82,7 +82,7 @@ EOT
                             if ($socio->getEmail()) $socioBD->setEmail($socio->getEmail());
                             if ($socio->getLanguage()) $socioBD->setLanguage($socio->getLanguage());
                             if ($socio->getFechaAlta()) $socioBD->setFechaAlta($socio->getFechaAlta());
-                            if ($socio->getFechaBaja()) $socioBD->setFechaBaja($socio->getFechaBaja());
+                            //if ($socio->getFechaBaja()) $socioBD->setFechaBaja($socio->getFechaBaja());
                             //$output->writeln($socio->toLongString());
                             //$output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
