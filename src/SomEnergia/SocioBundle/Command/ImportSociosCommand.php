@@ -55,7 +55,7 @@ EOT
                     $socio->setMobile($data[9]);
                     $socio->setEmail($data[10]);
                     $socio->setLanguage($data[11]);
-                    $socio->setFechaAlta(\DateTime::createFromFormat('Y-m-d', $data[12]));
+                    if (strlen($data[12] > 0)) $socio->setFechaAlta(\DateTime::createFromFormat('Y-m-d', $data[12]));
                     //$socio->setFechaBaja(\DateTime::createFromFormat('Y-m-d', $data[13]));
                     //$output->writeln($socio->toLongString());
                     $output->write('Importando socio ERPID:' . $socio->getErpid() . '... ');
