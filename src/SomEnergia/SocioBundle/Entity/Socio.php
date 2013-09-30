@@ -84,6 +84,16 @@ class Socio
      */
     protected $language;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $fechaAlta;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    protected $fechaBaja;
+
     public function getId()
     {
         return $this->id;
@@ -209,15 +219,44 @@ class Socio
         return $this->language;
     }
 
+    /**
+     * @param mixed $fechaAlta
+     */
+    public function setFechaAlta($fechaAlta)
+    {
+        $this->fechaAlta = $fechaAlta;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFechaAlta()
+    {
+        return $this->fechaAlta;
+    }
+
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+    }
+
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
+
     public function toLongString()
     {
-        return $this->getId().' # '.$this->getErpid().' # '.$this->getActive().' # '.$this->getName().' # '.$this->getRef().' # '
-            .$this->getVat().' # '.$this->getStreet().' # '.$this->getZip().' # '.$this->getCity().' # '
-            .$this->getPhone().' # '.$this->getMobile().' # '.$this->getEmail();
+        return $this->getId() . ' # ' . $this->getErpid() . ' # ' . $this->getActive() . ' # ' . $this->getName() . ' # ' . $this->getRef() . ' # '
+             . $this->getVat() . ' # ' . $this->getStreet() . ' # ' . $this->getZip() . ' # ' . $this->getCity() . ' # '
+             . $this->getPhone() . ' # ' . $this->getMobile() . ' # ' . $this->getEmail() . ' # ' . $this->getLanguage() . ' # '
+             . $this->getFechaAlta()->format('d/m/Y') . ' # '
+             . ($this->getFechaBaja()? $this->getFechaBaja()->format('d/m/Y') : '---')
+            ;
     }
 
     public function isEqual(Socio $dest) {
-        return ($this->erpid == $dest->getErpid()
+        return $this->erpid == $dest->getErpid()
             && $this->active == $dest->getActive()
             && $this->name == $dest->getName()
             && $this->ref == $dest->getRef()
@@ -228,7 +267,10 @@ class Socio
             && $this->zip == $dest->getZip()
             && $this->mobile == $dest->getMobile()
             && $this->email == $dest->getEmail()
-            && $this->language == $dest->getLanguage());
+            && $this->language == $dest->getLanguage()
+            && $this->fechaAlta == $dest->getFechaAlta()
+            && $this->fechaBaja == $dest->getFechaBaja()
+        ;
     }
 
     public function containsAZipCodeOf(CCollection $zipCodes)

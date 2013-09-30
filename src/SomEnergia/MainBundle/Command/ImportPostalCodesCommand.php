@@ -29,7 +29,7 @@ EOT
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $output->writeln('<info>Welcome to the Som Energia import posatl codes command.</info>');
+        $output->writeln('<info>Welcome to the Som Energia import postal codes command.</info>');
         if ($input->getOption('force')) {
             $output->writeln('<comment>--force option enabled (this option persists changes to database)</comment>');
         }
@@ -52,8 +52,8 @@ EOT
                     $noupdated++;
                 } else {
                     $output->writeln(' | <info>√ new record added</info>');
-                    $em->persist($cp);
                     if ($input->getOption('force')) {
+                        $em->persist($cp);
                         $em->flush();
                     }
                     $new++;
