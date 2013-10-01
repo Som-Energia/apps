@@ -67,10 +67,10 @@ EOT
                     if (!is_null($socioBD)) {
                         if ($socio->isEqual($socioBD)) {
                             $noupdated++;
-                            $output->writeln('existe y NO hay cambios (NO procesa nada)');
+                            $output->writeln('<comment>existe y NO hay cambios (NO procesa nada)</comment>');
                         } else {
                             $updated++;
-                            $output->writeln('existe y hay cambios (procesando su actualización)');
+                            $output->writeln('<info>existe y hay cambios (procesando su actualización)</info>');
                             if ($socio->getName()) $socioBD->setName($socio->getName());
                             if ($socio->getRef()) $socioBD->setRef($socio->getRef());
                             if ($socio->getVat()) $socioBD->setVat($socio->getVat());
@@ -83,8 +83,8 @@ EOT
                             if ($socio->getLanguage()) $socioBD->setLanguage($socio->getLanguage());
                             if ($socio->getFechaAlta()) $socioBD->setFechaAlta($socio->getFechaAlta());
                             //if ($socio->getFechaBaja()) $socioBD->setFechaBaja($socio->getFechaBaja());
-                            //$output->writeln($socio->toLongString());
-                            //$output->writeln($socioBD->toLongString());
+                            $output->writeln($socio->toLongString());
+                            $output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
                                 $em->persist($socioBD);
                                 $em->flush();
@@ -92,7 +92,7 @@ EOT
                         }
                     } else {
                         $new++;
-                        $output->writeln('NO existe (creando registro de socio nuevo)');
+                        $output->writeln('<info>NO existe (creando registro de socio nuevo)</info>');
                         if ($input->getOption('force')) {
                             $em->persist($socio);
                             $em->flush();
@@ -100,7 +100,7 @@ EOT
                     }
                 } else {
                     $wrong++;
-                    $output->writeln('Registro de importacion incorrecto (NO procesa nada)');
+                    $output->writeln('<error>Registro de importacion incorrecto (NO procesa nada)</error>');
                 }
                 $row++;
             }
