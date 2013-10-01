@@ -268,7 +268,7 @@ class Socio
             && $this->mobile == $dest->getMobile()
             && $this->email == $dest->getEmail()
             && $this->language == $dest->getLanguage()
-            && $this->fechaAlta == $dest->getFechaAlta()
+            //&& $this->fechaAlta == $dest->getFechaAlta()
             //&& $this->fechaBaja == $dest->getFechaBaja()
         ;
     }
