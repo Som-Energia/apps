@@ -71,20 +71,20 @@ EOT
                         } else {
                             $updated++;
                             $output->writeln('<info>existe y hay cambios (procesando su actualización)</info>');
-                            if ($socio->getName()) $socioBD->setName($socio->getName());
-                            if ($socio->getRef()) $socioBD->setRef($socio->getRef());
-                            if ($socio->getVat()) $socioBD->setVat($socio->getVat());
-                            if ($socio->getStreet()) $socioBD->setStreet($socio->getStreet());
-                            if ($socio->getZip()) $socioBD->setZip($socio->getZip());
-                            if ($socio->getCity()) $socioBD->setCity($socio->getCity());
-                            if ($socio->getPhone()) $socioBD->setPhone($socio->getPhone());
-                            if ($socio->getMobile()) $socioBD->setMobile($socio->getMobile());
-                            if ($socio->getEmail()) $socioBD->setEmail($socio->getEmail());
-                            if ($socio->getLanguage()) $socioBD->setLanguage($socio->getLanguage());
-                            if ($socio->getFechaAlta()) $socioBD->setFechaAlta($socio->getFechaAlta());
-                            //if ($socio->getFechaBaja()) $socioBD->setFechaBaja($socio->getFechaBaja());
-                            $output->writeln($socio->toLongString());
-                            $output->writeln($socioBD->toLongString());
+                            $socioBD->setName($socio->getName());
+                            $socioBD->setRef($socio->getRef());
+                            $socioBD->setVat($socio->getVat());
+                            $socioBD->setStreet($socio->getStreet());
+                            $socioBD->setZip($socio->getZip());
+                            $socioBD->setCity($socio->getCity());
+                            $socioBD->setPhone($socio->getPhone());
+                            $socioBD->setMobile($socio->getMobile());
+                            $socioBD->setEmail($socio->getEmail());
+                            $socioBD->setLanguage($socio->getLanguage());
+                            $socioBD->setFechaAlta($socio->getFechaAlta());
+                            //$socioBD->setFechaBaja($socio->getFechaBaja());
+                            //$output->writeln($socio->toLongString());
+                            //$output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
                                 $em->persist($socioBD);
                                 $em->flush();
