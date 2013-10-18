@@ -56,7 +56,7 @@ class SocioAdminController extends Controller
         foreach ($sociosDB as $socioDB) {
             if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
                 $row++;
-                $excelService->excelObj
+                $excelService->excelObj->setActiveSheetIndex(0)
                     ->setCellValue('A' . $row, $socioDB->getRef())
                     ->setCellValue('B' . $row, $socioDB->getName())
                     ->setCellValue('C' . $row, $socioDB->getEmail())
