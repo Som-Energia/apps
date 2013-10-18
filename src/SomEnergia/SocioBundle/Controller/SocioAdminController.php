@@ -31,6 +31,7 @@ class SocioAdminController extends Controller
 
     public function exportRelatedListAction()
     {
+        $logger = $this->get('logger');
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         /** @var GrupoLocal $grupoLocal */
@@ -38,6 +39,7 @@ class SocioAdminController extends Controller
         /** @var array $socios */
         $sociosDB = $em->getRepository('SocioBundle:Socio')->findAll();
         $row = 1;
+        $logger->debug(__METHOD__ . ' :: line 42');
         $excelService = $this->get('xls.service_xls2007');
         $excelService->excelObj->getProperties()->setCreator("Som Energia")
             ->setLastModifiedBy("Som Energia")
@@ -46,12 +48,14 @@ class SocioAdminController extends Controller
             ->setDescription("Som Energia socios export document for Office 2007 XLS, generated using PHP classes.")
             ->setKeywords("office 2007 php som energia socio")
             ->setCategory("Result file");
+        $logger->debug(__METHOD__ . ' :: line 51');
         $excelService->excelObj->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'Número')
             ->setCellValue('B' . $row, 'Nombre')
             ->setCellValue('C' . $row, 'Email')
             ->setCellValue('D' . $row, 'Idioma')
         ;
+        $logger->debug(__METHOD__ . ' :: line 58');
         /** @var Socio $socioDB */
         foreach ($sociosDB as $socioDB) {
             if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
@@ -62,10 +66,12 @@ class SocioAdminController extends Controller
                     ->setCellValue('C' . $row, $socioDB->getEmail())
                     ->setCellValue('D' . $row, $socioDB->getLanguage())
                 ;
+                $logger->debug(__METHOD__ . ' :: line 69 :: row ' . $row . ' :: soci ' . $socioDB);
             }
         }
         $excelService->excelObj->getActiveSheet()->setTitle('Socios');
         $excelService->excelObj->setActiveSheetIndex(0);
+        $logger->debug(__METHOD__ . ' :: line 74');
         //create the response
         $response = $excelService->getResponse();
         $response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
