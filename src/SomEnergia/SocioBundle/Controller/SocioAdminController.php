@@ -75,7 +75,7 @@ class SocioAdminController extends Controller
         //create the response
         $response = $excelService->getResponse();
         $response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
-        $response->headers->set('Content-Disposition', 'attachment;filename=socios-export-' . date('Y-m-d') . '.xls');
+        $response->headers->set('Content-Disposition', 'inline;filename=socios-export-' . date('Y-m-d') . '.xls');
 
         return $response;
     }
