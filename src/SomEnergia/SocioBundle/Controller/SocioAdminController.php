@@ -56,7 +56,7 @@ class SocioAdminController extends Controller
         foreach ($sociosDB as $socioDB) {
             if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
                 $row++;
-                $excelService->excelObj->setActiveSheetIndex(0)
+                $excelService->excelObj
                     ->setCellValue('A' . $row, $socioDB->getRef())
                     ->setCellValue('B' . $row, $socioDB->getName())
                     ->setCellValue('C' . $row, $socioDB->getEmail())
@@ -68,7 +68,7 @@ class SocioAdminController extends Controller
         $excelService->excelObj->setActiveSheetIndex(0);
         //create the response
         $response = $excelService->getResponse();
-        $response->headers->set('Content-Type', 'text/vnd.ms-excel; charset=utf-8');
+        $response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
         $response->headers->set('Content-Disposition', 'attachment;filename=socios-export-' . date('Y-m-d') . '.xls');
 
         return $response;
