@@ -90,6 +90,7 @@ security:
 
         # SOM ENERGIA custom-made configuration
         - { path: ^/admin/sonata/user, role: ROLE_SUPER_ADMINISTRADOR }
+        - { path: ^/admin/somenergia/socio/socio, role: ROLE_DELEGADO_GRUPO_LOCAL }
         - { path: ^/admin/somenergia/socio, role: ROLE_SUPER_ADMINISTRADOR }
         - { path: ^/admin/somenergia/mail, role: ROLE_GESTOR_MAILS }
         - { path: ^/admin/somenergia/asamblea, role: ROLE_ADMINISTRADOR_ASAMBLEA }
