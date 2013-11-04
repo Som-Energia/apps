@@ -168,4 +168,33 @@ class GrupoLocal
     {
         return $this->users;
     }
+
+    public function postalCodesBunchString()
+    {
+        $result = '';
+        $i = 0;
+        foreach ($this->codigosPostales as $cp) {
+            $result .= $cp . ', ';
+            if ($i == 9) {
+                $result .= '<div style="display:none">';
+            }
+            $i++;
+        }
+        if ($i > 0) $result = substr($result, 0, strlen($result) - 2);
+        if ($i == 10) $result .= '</div>';
+        if (count($this->codigosPostales) > 10) {
+            $result .= '</div><br/><a class="btn" id="gid' . $this->id . '" onclick="showMore(this)">mostrar ' . (count($this->codigosPostales) - 10) . ' más</a>';
+            $result .= '
+            <script>
+                function showMore(evt) {
+                    var node = $("#" + evt.id);
+                    node.prev().prev().show();
+                    node.prev().remove();
+                    node.remove();
+                    //console.log(evt.id);
+                }
+            </script>';
+        }
+        return $result;
+    }
 }

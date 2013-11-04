@@ -19,7 +19,7 @@ class GrupoLocalAdmin extends Admin
         $listMapper
             //->add('id')
             ->addIdentifier('nombre', null, array('label' => 'Nombre'))
-            ->add('codigosPostales', null, array('label' => 'Códigos postales'))
+            ->add('codigosPostales', null, array('label' => 'Códigos postales', 'template' => 'GrupoLocalBundle:Admin:postal-codes-bunch.html.twig'))
             ->add('users', null, array('label' => 'Usuarios'))
             // add custom action links
             ->add('_action', 'actions', array(
