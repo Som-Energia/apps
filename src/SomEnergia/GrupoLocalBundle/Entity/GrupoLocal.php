@@ -180,7 +180,7 @@ class GrupoLocal
             }
             $i++;
         }
-        if ($i > 0) $result = substr($result, 0, strlen($result) - 2);
+        if ($i > 0 && $i != 10) $result = substr($result, 0, strlen($result) - 2);
         if ($i == 10) $result .= '</div>';
         if (count($this->codigosPostales) > 10) {
             $result .= '</div><br/><a class="btn" id="gid' . $this->id . '" onclick="showMore(this)">mostrar ' . (count($this->codigosPostales) - 10) . ' más</a>';
