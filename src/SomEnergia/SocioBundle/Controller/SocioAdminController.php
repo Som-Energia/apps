@@ -53,7 +53,9 @@ class SocioAdminController extends Controller
             ->setCellValue('A' . $row, 'Número')
             ->setCellValue('B' . $row, 'Nombre')
             ->setCellValue('C' . $row, 'Email')
-            ->setCellValue('D' . $row, 'Idioma')
+            ->setCellValue('D' . $row, 'CP')
+            ->setCellValue('E' . $row, 'Población')
+            ->setCellValue('F' . $row, 'Idioma')
         ;
         //$logger->debug(__METHOD__ . ' :: line 58');
         /** @var Socio $socioDB */
@@ -64,7 +66,9 @@ class SocioAdminController extends Controller
                     ->setCellValue('A' . $row, $socioDB->getRef())
                     ->setCellValue('B' . $row, $socioDB->getName())
                     ->setCellValue('C' . $row, $socioDB->getEmail())
-                    ->setCellValue('D' . $row, $socioDB->getLanguage())
+                    ->setCellValue('D' . $row, $socioDB->getZip())
+                    ->setCellValue('E' . $row, $socioDB->getCity())
+                    ->setCellValue('F' . $row, $socioDB->getLanguage())
                 ;
                 //$logger->debug(__METHOD__ . ' :: line 69 :: row ' . $row . ' :: soci ' . $socioDB);
             }
