@@ -8,16 +8,18 @@
 
 {% block title %}
     {{ "Eliminar códigos postales" | trans }}
-{% endblock%}
+{% endblock %}
 
 {% block actions %}
     <div class="sonata-actions">
         <ul>
             {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
-                <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('edit', {id : grupolocal.id}) }}">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('edit', {id : grupolocal.id}) }}">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
             {# endif #}
             {% if admin.hasroute('list') and admin.isGranted('LIST') %}
-                <li class="btn sonata-action-element"><a href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a></li>
+                <li class="btn sonata-action-element"><a
+                            href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a>
+                </li>
             {% endif %}
         </ul>
     </div>
@@ -39,33 +41,55 @@
     <div class="row-fluid">
         <div class="span10">
             {% if grupolocal.codigosPostales | length > 0 %}
-                <form action="{{ path('admin_somenergia_grupolocal_grupolocal_removePostalCodes', { id : grupolocal.id }) }}" method="post">
+                <form action="{{ path('admin_somenergia_grupolocal_grupolocal_removePostalCodes', { id : grupolocal.id }) }}"
+                      method="post">
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr class="sonata-ba-list-field-header">
-                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch"></th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch"><a class="btn edit_link btn-small" title="Seleccionar todos" onclick="selectAll(this);"><i class="icon-plus" style="margin-right:5px;"></i>todos</a>
+                                <a class="btn edit_link btn-small" title="Seleccionar ninguno" onclick="deselectAll(this);"><i class="icon-minus" style="margin-right:5px;"></i>ninguno</a></th>
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Código postal</th>
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Población</th>
                         </tr>
                         </thead>
                         <tbody>
-                            {% for codigoPostal in grupolocal.codigosPostales %}
-                                <tr>
-                                    <td><label class="checkbox"><input type="checkbox" name="optionCP[]" id="cp-{{ codigoPostal.id }}" value="{{ codigoPostal.id }}"</label></td>
-                                    <td>{{ codigoPostal.cp }}</td>
-                                    <td>{{ codigoPostal.poblacion }}</td>
-                                </tr>
-                            {% endfor %}
+                        {% for codigoPostal in grupolocal.codigosPostales %}
+                            <tr>
+                                <td><label class="checkbox"><input type="checkbox" name="optionCP[]"
+                                                                   id="cp-{{ codigoPostal.id }}"
+                                                                   value="{{ codigoPostal.id }}"</label></td>
+                                <td>{{ codigoPostal.cp }}</td>
+                                <td>{{ codigoPostal.poblacion }}</td>
+                            </tr>
+                        {% endfor %}
                         </tbody>
                     </table>
                     <input class="btn btn-primary" type="submit" value="Eliminar">
-                    <a class="btn btn-danger" href="{{ path('admin_somenergia_grupolocal_grupolocal_list') }}">Cancelar</a>
+                    <a class="btn btn-danger"
+                       href="{{ path('admin_somenergia_grupolocal_grupolocal_list') }}">Cancelar</a>
                 </form>
             {% else %}
-                <div class="alert alert-error">Lo sentimos, no existe ningún código postal disponible para eliminar</div>
+                <div class="alert alert-error">Lo sentimos, no existe ningún código postal disponible para eliminar
+                </div>
                 <a class="btn btn-danger" href="{{ path('admin_somenergia_grupolocal_grupolocal_list') }}">Cancelar</a>
             {% endif %}
         </div>
     </div>
+{% endblock %}
 
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        function selectAll(evt) {
+            $('table tbody td:nth-child(1) label input').each(function (index, element) {
+                $('#' + element.id).attr('checked', true);
+            });
+        }
+
+        function deselectAll(evt) {
+            $('table tbody td:nth-child(1) label input').each(function (index, element) {
+                $('#' + element.id).attr('checked', false);
+            });
+        }
+    </script>
 {% endblock %}
