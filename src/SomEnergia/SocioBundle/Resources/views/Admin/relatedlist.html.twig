@@ -18,10 +18,10 @@
                 <li class="btn sonata-action-element"><a href="{{ path('admin_somenergia_socio_socio_exportrelatedlist') }}">Exportar a XLS</a></li>
             {% endif %}
             {# if admin.hasroute('edit') and admin.isGranted('EDIT') #}
-            <!-- li class="btn sonata-action-element"><a href="">{{ 'link_action_edit'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            <!-- li class="btn sonata-action-element"><a href="">{# 'link_action_edit'|trans({}, 'SonataAdminBundle') #}</a></li -->
             {# endif #}
             {# if admin.hasroute('list') and admin.isGranted('LIST') #}
-            <!-- li class="btn sonata-action-element"><a href="{{ admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}</a></li -->
+            <!-- li class="btn sonata-action-element"><a href="{# admin.generateUrl('list') }}">{{ 'link_action_list'|trans({}, 'SonataAdminBundle') #}</a></li -->
             {# endif #}
         </ul>
     </div>
@@ -53,6 +53,8 @@
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Número</th>
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Nombre</th>
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Email</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">CP</th>
+                            <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Población</th>
                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-batch">Idioma</th>
                         </tr>
                     </thead>
@@ -62,6 +64,8 @@
                                 <td>{{ socio.ref }}</td>
                                 <td>{{ socio.name }}</td>
                                 <td><a href="mailto:{{ socio.email }}">{{ socio.email }}</a></td>
+                                <td>{{ socio.zip }}</td>
+                                <td>{{ socio.city }}</td>
                                 <td>{{ socio.language }}</td>
                             </tr>
                         {% endfor %}
