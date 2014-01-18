@@ -34,7 +34,7 @@ EOT
         }
         $contenedor = $this->getContainer();
         $em = $contenedor->get('doctrine')->getEntityManager();
-        $row = 0; $new = 0; $wrong = 0; $updated = 0; $noupdated = 0;
+        $row = 0; $new = 0; $wrong = 0; $updated = 0; $noupdated = 0; $errors = 0;
         $dtStart = new \DateTime();
         $output->writeln('Leyendo archivo de entrada ' . $input->getArgument('archivo') . ' a las ' . date('h:m:s d/m/Y', $dtStart->getTimestamp()) . '...');
         if (($handle = fopen($input->getArgument('archivo'), "r")) !== false) {
@@ -69,7 +69,6 @@ EOT
                             $noupdated++;
                             $output->writeln('<comment>existe y NO hay cambios (NO procesa nada)</comment>');
                         } else {
-                            $updated++;
                             $output->writeln('<info>existe y hay cambios (procesando su actualización)</info>');
                             $socioBD->setName($socio->getName());
                             $socioBD->setRef($socio->getRef());
@@ -86,8 +85,16 @@ EOT
                             //$output->writeln($socio->toLongString());
                             //$output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
-                                $em->persist($socioBD);
-                                $em->flush();
+                                try {
+                                    $updated++;
+                                    $em->persist($socioBD);
+                                    $em->flush();
+                                } catch (\Exception $e) {
+                                    $errors++;
+                                    $output->writeln('<error>ERROR: ' . $e->getMessage() . '</error>');
+                                }
+                            } else {
+                                $updated++;
                             }
                         }
                     } else {
@@ -112,9 +119,9 @@ EOT
             $output->writeln($updated. ' socios actualizados');
             $output->writeln($noupdated. ' socios existentes NO actualizados');
             $output->writeln($wrong. ' items de importacion incorrectos');
+            $output->writeln($errors. ' errores detectados');
             $output->writeln('TOTAL: ' . $row . ' ITEMS GESTIONADOS');
             $output->writeln('TIEMPO EMPLEADO: ' . $interval->format('%H:%S'));
-
         } else {
             $output->writeln('ERROR! Imposible leer archivo de entrada');
         }
