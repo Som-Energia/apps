@@ -86,9 +86,12 @@ EOT
                             //$output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
                                 try {
-                                    $updated++;
                                     $em->persist($socioBD);
                                     $em->flush();
+                                    $updated++;
+                                } catch (\Doctrine\DBAL\DBALException $e) {
+                                    $errors++;
+                                    $output->writeln('<error>ERROR: ' . $e->getMessage() . '</error>');
                                 } catch (\Exception $e) {
                                     $errors++;
                                     $output->writeln('<error>ERROR: ' . $e->getMessage() . '</error>');
@@ -98,11 +101,21 @@ EOT
                             }
                         }
                     } else {
-                        $new++;
                         $output->writeln('<info>NO existe (creando registro de socio nuevo)</info>');
                         if ($input->getOption('force')) {
-                            $em->persist($socio);
-                            $em->flush();
+                            try {
+                                $em->persist($socio);
+                                $em->flush();
+                                $new++;
+                            } catch (\Doctrine\DBAL\DBALException $e) {
+                                $errors++;
+                                $output->writeln('<error>ERROR: ' . $e->getMessage() . '</error>');
+                            } catch (\Exception $e) {
+                                $errors++;
+                                $output->writeln('<error>ERROR: ' . $e->getMessage() . '</error>');
+                            }
+                        } else {
+                            $new++;
                         }
                     }
                 } else {
