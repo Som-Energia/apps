@@ -92,7 +92,8 @@ EOT
                                 }
                                 try {
                                     $em->persist($socioBD);
-                                    $em->flush()->clear();
+                                    $em->flush();
+                                    $em->clear();
                                     $updated++;
                                 } catch (\Doctrine\DBAL\DBALException $e) {
                                     $errors++;
@@ -115,7 +116,8 @@ EOT
                             }
                             try {
                                 $em->persist($socio);
-                                $em->flush()->clear();
+                                $em->flush();
+                                $em->clear();
                                 $new++;
                             } catch (\Doctrine\DBAL\DBALException $e) {
                                 $errors++;
