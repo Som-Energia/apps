@@ -1,5 +1,8 @@
 {% extends 'SonataAdminBundle::standard_layout.html.twig' %}
 
+{# removes top search bar #}
+{% block sonata_top_bar_search %}{% endblock %}
+
 {% block title %}
     Som Energia
 {% endblock %}
