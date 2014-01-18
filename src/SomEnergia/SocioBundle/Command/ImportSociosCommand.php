@@ -33,7 +33,7 @@ EOT
             $output->writeln('<comment>--force option enabled (this option persists changes to database)</comment>');
         }
         $contenedor = $this->getContainer();
-        $em = $contenedor->get('doctrine')->getEntityManager();
+        $em = $contenedor->get('doctrine')->getManager();
         $row = 0; $new = 0; $wrong = 0; $updated = 0; $noupdated = 0; $errors = 0;
         $dtStart = new \DateTime();
         $output->writeln('Leyendo archivo de entrada ' . $input->getArgument('archivo') . ' a las ' . date('h:m:s d/m/Y', $dtStart->getTimestamp()) . '...');
@@ -85,6 +85,11 @@ EOT
                             //$output->writeln($socio->toLongString());
                             //$output->writeln($socioBD->toLongString());
                             if ($input->getOption('force')) {
+                                if (!$em->isOpen()) {
+                                    $contenedor->set('doctrine.orm.entity_manager', null);
+                                    $contenedor->set('doctrine.orm.default_entity_manager', null);
+                                    $em = $contenedor->get('doctrine')->getManager();
+                                }
                                 try {
                                     $em->persist($socioBD);
                                     $em->flush();
@@ -103,6 +108,11 @@ EOT
                     } else {
                         $output->writeln('<info>NO existe (creando registro de socio nuevo)</info>');
                         if ($input->getOption('force')) {
+                            if (!$em->isOpen()) {
+                                $contenedor->set('doctrine.orm.entity_manager', null);
+                                $contenedor->set('doctrine.orm.default_entity_manager', null);
+                                $em = $contenedor->get('doctrine')->getManager();
+                            }
                             try {
                                 $em->persist($socio);
                                 $em->flush();
