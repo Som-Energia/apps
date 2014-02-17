@@ -11,6 +11,6 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/admin/login');
 
-        $this->assertTrue($client->getResponse()->getStatusCode(), 200);
+        $this->assertTrue($client->getResponse()->getStatusCode() == 200);
     }
 }
