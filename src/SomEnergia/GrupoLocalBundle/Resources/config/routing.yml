@@ -1,3 +1,3 @@
-grupo_local_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: GrupoLocalBundle:Default:index }
+#grupo_local_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: GrupoLocalBundle:Default:index }

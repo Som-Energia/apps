@@ -1,6 +1,6 @@
-asamblea_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: AsambleaBundle:Default:index }
+#asamblea_homepage:
+#    pattern:  /hello/{name}
+#    defaults: { _controller: AsambleaBundle:Default:index }
 
 asamblea_asistencia_informes:
     pattern: /admin/somenergia/asamblea/informe/choose
