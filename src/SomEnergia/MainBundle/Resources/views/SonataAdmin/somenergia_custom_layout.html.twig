@@ -3,30 +3,8 @@
 {# removes top search bar #}
 {% block sonata_top_bar_search %}{% endblock %}
 
-{% block title %}
-    Som Energia
-{% endblock %}
+{% block title %}Som Energia{% endblock %}
 
-{% block footer %}
-    {# this is useful to remove the sonata ad footer #}
-{% endblock %}
+{# remove sonata default footer #}
+{% block footer %}{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    {% stylesheets filter='cssrewrite' 'bundles/main/css/select2.css' %}
-    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
-    {% if form is defined %}
-        {{ form_stylesheet(form) }}
-    {% endif %}
-{% endblock %}
-
-{% block javascripts %}
-    {{ parent() }}
-    {% javascripts '@MainBundle/Resources/public/js/select2.js' %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-    {% if form is defined %}
-        {{ form_javascript(form) }}
-    {% endif %}
-{% endblock %}

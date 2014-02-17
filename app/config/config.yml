@@ -90,13 +90,10 @@ sonata_admin:
     templates:
         layout: MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
         dashboard: MainBundle:SonataAdmin:somenergia_custom_dashboard.html.twig
-        #dashboard: SonataAdminBundle:Core:dashboard.html.twig
         ajax: SonataAdminBundle::ajax_layout.html.twig
         list: SonataAdminBundle:CRUD:list.html.twig
         show: SonataAdminBundle:CRUD:show.html.twig
         edit: SonataAdminBundle:CRUD:edit.html.twig
-        search:              SonataAdminBundle:Core:search.html.twig
-        search_result_block: SonataAdminBundle:Block:block_search_result.html.twig
     dashboard:
         blocks:
             - { position: left, type: somenergia.sonata.custom.block.admin_list }
