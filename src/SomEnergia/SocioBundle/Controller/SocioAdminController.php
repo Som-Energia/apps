@@ -31,7 +31,7 @@ class SocioAdminController extends Controller
 
     public function exportRelatedListAction()
     {
-        $logger = $this->get('logger');
+//        $logger = $this->get('logger');
         $user = $this->get('security.context')->getToken()->getUser();
         $em = $this->getDoctrine()->getManager();
         /** @var GrupoLocal $grupoLocal */
@@ -40,8 +40,9 @@ class SocioAdminController extends Controller
         $sociosDB = $em->getRepository('SocioBundle:Socio')->findAll();
         $row = 1;
         //$logger->debug(__METHOD__ . ' :: line 42');
-        $excelService = $this->get('xls.service_xls2007');
-        $excelService->excelObj->getProperties()->setCreator("Som Energia")
+
+        $phpExcelObject = $this->get('phpexcel')->createPHPExcelObject();
+        $phpExcelObject->getProperties()->setCreator("Som Energia")
             ->setLastModifiedBy("Som Energia")
             ->setTitle("Socios del grupo local de " . $grupoLocal->getNombre())
             ->setSubject("Socios del grupo local de " . $grupoLocal->getNombre())
@@ -49,7 +50,7 @@ class SocioAdminController extends Controller
             ->setKeywords("office 2007 php som energia socio")
             ->setCategory("Result file");
         //$logger->debug(__METHOD__ . ' :: line 51');
-        $excelService->excelObj->setActiveSheetIndex(0)
+        $phpExcelObject->setActiveSheetIndex(0)
             ->setCellValue('A' . $row, 'Número')
             ->setCellValue('B' . $row, 'Nombre')
             ->setCellValue('C' . $row, 'Email')
@@ -62,7 +63,7 @@ class SocioAdminController extends Controller
         foreach ($sociosDB as $socioDB) {
             if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
                 $row++;
-                $excelService->excelObj->setActiveSheetIndex(0)
+                $phpExcelObject->setActiveSheetIndex(0)
                     ->setCellValue('A' . $row, $socioDB->getRef())
                     ->setCellValue('B' . $row, $socioDB->getName())
                     ->setCellValue('C' . $row, $socioDB->getEmail())
@@ -73,13 +74,16 @@ class SocioAdminController extends Controller
                 //$logger->debug(__METHOD__ . ' :: line 69 :: row ' . $row . ' :: soci ' . $socioDB);
             }
         }
-        $excelService->excelObj->getActiveSheet()->setTitle('Socios');
-        $excelService->excelObj->setActiveSheetIndex(0);
+        $phpExcelObject->getActiveSheet()->setTitle('Socios');
+        $phpExcelObject->setActiveSheetIndex(0);
         //$logger->debug(__METHOD__ . ' :: line 74');
         //create the response
-        $response = $excelService->getResponse();
+        $writer = $this->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
+        $response = $this->get('phpexcel')->createStreamedResponse($writer);
         $response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
         $response->headers->set('Content-Disposition', 'inline;filename=socios-export-' . date('Y-m-d') . '.xls');
+        $response->headers->set('Pragma', 'public');
+        $response->headers->set('Cache-Control', 'maxage=1');
 
         return $response;
     }
