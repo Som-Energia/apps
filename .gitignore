@@ -11,6 +11,10 @@ web/css/*
 web/js/*
 web/uploads/*
 
+# -- Capifony -----------------------------------------
+Capfile
+app/config/deploy.rb
+
 # -- Composer -----------------------------------------
 composer.phar
 
