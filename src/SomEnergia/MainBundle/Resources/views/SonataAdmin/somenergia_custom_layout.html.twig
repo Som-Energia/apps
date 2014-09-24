@@ -6,6 +6,14 @@
 {# custom title #}
 {% block title %}Som Energia{% endblock %}
 
+{# custom logo #}
+{% block logo %}
+    <a href="{{ url('sonata_admin_dashboard') }}" class="brand">
+        <img src="{{ asset(admin_pool.titlelogo) }}" alt="{{ admin_pool.title }}" style="margin-top:-5px;">
+        {{ admin_pool.title }}
+    </a>
+{% endblock %}
+
 {# custom footer #}
 {% block footer %}
     <div class="row-fluid">
