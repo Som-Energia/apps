@@ -3,8 +3,15 @@
 {# removes top search bar #}
 {% block sonata_top_bar_search %}{% endblock %}
 
+{# custom title #}
 {% block title %}Som Energia{% endblock %}
 
-{# remove sonata default footer #}
-{% block footer %}{% endblock %}
-
+{# custom footer #}
+{% block footer %}
+    <div class="row-fluid">
+        <div class="well">
+            <div class="span6"><a href="//www.somenergia.coop">&copy; {{ 'now'|date('Y') }} Som Energia</a></div>
+            <div class="span6" style="text-align:right;"><a href="mailto:david.romani@somenergia.coop?subject=Ayuda administrador Som Energia">Ayuda y soporte técnico</a></div>
+        </div>
+    </div>
+{% endblock %}
