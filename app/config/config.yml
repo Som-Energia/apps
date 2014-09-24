@@ -91,12 +91,13 @@ sonata_admin:
     title:  'Administrador Som Energia'
     title_logo: '/favicon.png'
     templates:
-        layout: MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
-        dashboard: MainBundle:SonataAdmin:somenergia_custom_dashboard.html.twig
-        ajax: SonataAdminBundle::ajax_layout.html.twig
-        list: SonataAdminBundle:CRUD:list.html.twig
-        show: SonataAdminBundle:CRUD:show.html.twig
-        edit: SonataAdminBundle:CRUD:edit.html.twig
+        layout:     MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
+        dashboard:  MainBundle:SonataAdmin:somenergia_custom_dashboard.html.twig
+        ajax:       SonataAdminBundle::ajax_layout.html.twig
+        list:       SonataAdminBundle:CRUD:list.html.twig
+        show:       SonataAdminBundle:CRUD:show.html.twig
+        edit:       SonataAdminBundle:CRUD:edit.html.twig
+        user_block: MainBundle:SonataAdmin:somenergia_custom_user_block.html.twig
     dashboard:
         blocks:
             - { position: left, type: somenergia.sonata.custom.block.admin_list }
