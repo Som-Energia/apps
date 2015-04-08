@@ -3,21 +3,27 @@
 namespace SomEnergia\MailBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
  * Users
  *
  * @ORM\Table(name="users")
+ * @DoctrineAssert\UniqueEntity(fields="id", message="El email introducido ya existe")
  * @ORM\Entity
  */
 class Users
 {
+    
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *     pattern="/@somenergia\.com/",
+     *     message="Introduce una dirección de email válida del dominio @somenergia.com"
+     * )
      * @ORM\Column(name="id", type="string", length=128, nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -106,7 +112,33 @@ class Users
     private $spamassassinrc;
 
 
-
+    public function __construct() {
+        $this->setUid(5000);
+        $this->setGid(5000);
+        $this->setHome('/var/spool/mail/virtual');
+        $this->setEnabled(true);
+        $this->setChangePassword(true);
+        $this->setQuota("");
+        $this->setProcmailrc("");
+        $this->setSpamassassinrc("");
+        
+    }
+    
+    /**
+     * Set id
+     *
+     * @param string $id
+     * @return Users
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+        $username=$this->extractUsernameFromEmail($id);
+        $this->setMaildir($username."/");
+        $this->setName($username);
+        
+        return $this;
+    }
     /**
      * Get id
      *
@@ -287,7 +319,7 @@ class Users
     public function setClear($clear)
     {
         $this->clear = $clear;
-    
+        $this->setCrypt($clear);
         return $this;
     }
 
@@ -391,5 +423,15 @@ class Users
     public function getSpamassassinrc()
     {
         return $this->spamassassinrc;
+    }
+    
+    private function extractUsernameFromEmail($email){
+        $parts = explode("@", $email);
+        return $parts[0];
+    }
+    
+    public function __toString()
+    {
+        return $this->getId() ? : '---';
     }
 }

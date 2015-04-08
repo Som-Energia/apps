@@ -14,6 +14,7 @@ use SomeEnergia\MailBundle\Entity\Aliases;
 
 class AliasesAdmin extends Admin
 {
+    protected $classnameLabel = 'Desvíos';
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
