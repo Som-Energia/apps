@@ -27,5 +27,11 @@ monolog:
 assetic:
     use_controller: true
 
+cypress_git_elephant:
+    enable_profiler: false
+    profiler_repository_path: "%kernel.root_dir%/../"
+    repositories:
+        "FinquesFarnos": "%kernel.root_dir%/../"
+
 #swiftmailer:
 #    delivery_address: me@example.com
