@@ -319,7 +319,7 @@ class Users
     public function setClear($clear)
     {
         $this->clear = $clear;
-        $this->setCrypt($clear);
+        $this->setCrypt(crypt($clear));
         return $this;
     }
 
