@@ -15,6 +15,7 @@ web/uploads/*
 # -- Capifony -----------------------------------------
 Capfile
 app/config/deploy.rb
+/backups/
 
 # -- Composer -----------------------------------------
 composer.phar
