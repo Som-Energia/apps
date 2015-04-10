@@ -126,6 +126,11 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
         arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
+    somenergia.mailboxes.admin:
+        class: SomEnergia\MailBundle\Admin\UsersAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Emails, label: Buzones }
+        arguments: [null, SomEnergia\MailBundle\Entity\Users, MailBundle:UsersAdmin]
 #    somenergia.asamblea.sede:
 #        class: SomEnergia\AsambleaBundle\Admin\SedeAdmin
 #        tags:

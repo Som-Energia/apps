@@ -1,5 +1,5 @@
 {% block user_block %}
     {% if app.user %}
-        {{ app.user }} <a class="btn btn-danger btn-mini" style="margin-top:-3px;" href="{{ url('sonata_user_admin_security_logout') }}">salir</a>
+        <i class="icon-user"></i> {{ app.user }} <a class="btn btn-danger btn-mini" style="margin-top:-3px;" href="{{ url('sonata_user_admin_security_logout') }}"><i class="icon-off icon-white"></i></a>
     {% endif %}
 {% endblock %}

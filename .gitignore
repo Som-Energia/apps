@@ -5,6 +5,7 @@ app/config/parameters.ini
 app/config/parameters.yml
 app/cache/*
 app/logs/*
+app/sessions/
 vendor/*
 web/bundles/*
 web/css/*
@@ -14,6 +15,7 @@ web/uploads/*
 # -- Capifony -----------------------------------------
 Capfile
 app/config/deploy.rb
+/backups/
 
 # -- Composer -----------------------------------------
 composer.phar
@@ -60,7 +62,7 @@ tmtags
 *.sublime-workspace
 
 # netbeans
-nbproject/private/
+nbproject/
 build/
 nbbuild/
 dist/
