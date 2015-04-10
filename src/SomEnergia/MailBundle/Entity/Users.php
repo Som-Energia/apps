@@ -19,8 +19,8 @@ class Users
     /**
      * @var string
      * @Assert\Regex(
-     *     pattern="/@somenergia\.com/",
-     *     message="Introduce una dirección de email válida del dominio @somenergia.com"
+     *     pattern="/@somenergia\.coop/",
+     *     message="Introduce una dirección de email válida del dominio @somenergia.coop"
      * )
      * @ORM\Column(name="id", type="string", length=128, nullable=false)
      * @ORM\Id
@@ -132,6 +132,7 @@ class Users
      */
     public function setId($id)
     {
+        $id = strtolower($id);
         $this->id = $id;
         $username=$this->extractUsernameFromEmail($id);
         $this->setMaildir($username."/");
