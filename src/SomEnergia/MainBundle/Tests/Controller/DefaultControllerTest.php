@@ -56,7 +56,6 @@ class DefaultControllerTest extends WebTestCase
     public function provideUrls()
     {
         return array(
-            array('/admin/login'),
             array('/admin/dashboard'),
             array('/admin/somenergia/mail/aliases/list'),
             array('/admin/somenergia/mail/aliases/create'),
@@ -64,10 +63,9 @@ class DefaultControllerTest extends WebTestCase
             array('/admin/somenergia/mail/aliases/1/show'),
             array('/admin/somenergia/mail/users/list'),
             array('/admin/somenergia/mail/users/create'),
-            array('/admin/somenergia/mail/users/1/edit'),
-            array('/admin/somenergia/mail/users/1/show'),
+            array('/admin/somenergia/mail/users/admin@somenergia.coop/edit'),
+            array('/admin/somenergia/mail/users/admin@somenergia.coop/show'),
             array('/admin/somenergia/socio/socio/list'),
-            array('/admin/somenergia/socio/socio/create'),
             array('/admin/somenergia/socio/socio/1/edit'),
             array('/admin/somenergia/socio/socio/1/show'),
             array('/admin/somenergia/main/codigopostal/list'),
