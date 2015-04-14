@@ -320,7 +320,7 @@ class Users
     public function setClear($clear)
     {
         $this->clear = $clear;
-        $this->setCrypt(crypt($clear), '$6$rounds=5000$abcdefghijklmno$');
+        $this->setCrypt(crypt($clear, '$6$rounds=5000$abcdefghijklmno$'));
         return $this;
     }
 

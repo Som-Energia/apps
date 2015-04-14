@@ -26,6 +26,7 @@ class AliasesAdmin extends Admin
                 'actions' => array(
                 //'view' => array(),
                 'edit' => array(),
+                'delete' => array(),
             ), 'label' => 'Acciones'))
         ;
     }
@@ -69,6 +70,6 @@ class AliasesAdmin extends Admin
     protected function configureRoutes(RouteCollection $collection)
     {
         //$collection->remove('create');
-        $collection->remove('delete');
+        //$collection->remove('delete');
     }
 }
