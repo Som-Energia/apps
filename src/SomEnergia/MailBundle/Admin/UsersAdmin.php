@@ -34,6 +34,7 @@ class UsersAdmin extends Admin {
                     'actions' => array(
                         'view' => array(),
                         'edit' => array(),
+                        'delete' => array(),
                     ), 'label' => 'Acciones'))
         ;
     }

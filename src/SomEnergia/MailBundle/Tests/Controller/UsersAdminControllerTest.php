@@ -24,7 +24,7 @@ class UsersAdminControllerTest extends WebTestCase {
         $form = $crawler->selectButton('_submit')->form(
                 array(
                     '_username' => 'admin',
-                    '_password' => '1234',
+                    '_password' => '12345',
                 )
         );
         $this->client->submit($form);
