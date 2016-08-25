@@ -16,10 +16,12 @@ class SocioAdminController extends Controller
         /** @var array $socios */
         $sociosDB = $em->getRepository('SocioBundle:Socio')->findAll();
         $socios = array();
-        /** @var Socio $socioDB */
-        foreach ($sociosDB as $socioDB) {
-            if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
-                array_push($socios, $socioDB);
+        if ($grupoLocal && $grupoLocal->getCodigosPostales()) {
+            /** @var Socio $socioDB */
+            foreach ($sociosDB as $socioDB) {
+                if ($socioDB->containsAZipCodeOf($grupoLocal->getCodigosPostales())) {
+                    array_push($socios, $socioDB);
+                }
             }
         }
 
