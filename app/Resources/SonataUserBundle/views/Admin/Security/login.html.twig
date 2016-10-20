@@ -1,6 +1,14 @@
 {% extends base_template %}
 
 {% block content %}
+    <div class="banner">
+        <ul class="list-inline">
+            <li><a href="https://www.somenergia.coop">web</a></li>
+            <li><a href="https://blog.somenergia.coop">blog</a></li>
+            <li><a href="https://plataforma.somenergia.coop">paltaforma</a></li>
+            <li><a href="https://oficinavirtual.somenergia.coop">oficina virtual</a></li>
+        </ul>
+    </div>
     <div class="connection" style="position:relative;left:0;top:0;margin:50px auto;box-shadow: 2px 2px 10px #ccc;">
         <form action="{{ path("sonata_user_admin_security_check") }}" method="post">
 
