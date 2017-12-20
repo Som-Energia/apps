@@ -8,29 +8,18 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
+            // Symfony
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
-
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
-
-            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
-
-            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
-
-            new FOS\UserBundle\FOSUserBundle(),
-
+            // Sonata
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
@@ -38,9 +27,15 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-
+            // Vendors
+            new FOS\UserBundle\FOSUserBundle(),
+            new Genemu\Bundle\FormBundle\GenemuFormBundle(),
+            new Hautelook\AliceBundle\HautelookAliceBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Liuggio\ExcelBundle\LiuggioExcelBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            // App
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-
             new SomEnergia\MailBundle\MailBundle(),
             new SomEnergia\MainBundle\MainBundle(),
             new SomEnergia\AsambleaBundle\AsambleaBundle(),
