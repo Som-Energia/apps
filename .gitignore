@@ -93,3 +93,4 @@ Icon
 .Trashes
 
 *.csv
+!/app/databases/.gitkeep

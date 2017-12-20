@@ -3,34 +3,34 @@ imports:
     - { resource: security.yml }
 
 framework:
-    translator: ~
-    secret:          %secret%
+    validation:      { enable_annotations: true }
+    default_locale:  "%locale%"
+    secret:          "%secret%"
+    trusted_proxies: ~
+    translator:      ~
+    form:            ~
+    csrf_protection: ~
+    fragments:       ~
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:            ~
-    csrf_protection: ~
-    validation:      { enable_annotations: true }
     templating:
         engines: [ "twig"]
-    default_locale:  "%locale%"
-    trusted_proxies: ~
     session:
         name:       backoffice_session
         handler_id: session.handler.native_file
         save_path:  "%kernel.root_dir%/sessions"
-    fragments:       ~
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
     globals:
         admin_version: "v1.0.03"
 
 # Assetic Configuration
 assetic:
-    debug:          %kernel.debug%
+    debug:          "%kernel.debug%"
     use_controller: false
     filters:
         cssrewrite: ~
@@ -38,42 +38,42 @@ assetic:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        port:     %database_port%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
+        driver:   "%database_driver%"
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
         charset:  UTF8
         types:
             json: Sonata\Doctrine\Types\JsonType
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
-        auto_mapping: true
+        auto_generate_proxy_classes: "%kernel.debug%"
+        auto_mapping:                true
         mappings:
             ApplicationSonataUserBundle: ~
-            SonataUserBundle: ~
-            FOSUserBundle: ~
+            SonataUserBundle:            ~
+            FOSUserBundle:               ~
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
     spool:     { type: memory }
 
 # Genemu Form Select 2 Bundle
 genemu_form:
     select2: ~
-    date: ~
+    date:    ~
 
 # Sonata Block
 sonata_block:
-    default_contexts: [cms]
+    default_contexts: [ cms ]
     blocks:
         sonata.admin.block.admin_list:
-            contexts:   [admin]
+            contexts:   [ admin ]
         sonata.block.service.text:   ~
         sonata.block.service.action: ~
         sonata.block.service.rss:    ~
@@ -81,8 +81,8 @@ sonata_block:
 
 # Sonata Admin
 sonata_admin:
-    title:  'Administrador Som Energia'
-    title_logo: '/favicon.png'
+    title:  "Administrador Som Energia"
+    title_logo: "/favicon.png"
     templates:
         layout:     MainBundle:SonataAdmin:somenergia_custom_layout.html.twig
         dashboard:  MainBundle:SonataAdmin:somenergia_custom_dashboard.html.twig
