@@ -1,11 +1,11 @@
 <?php
+
 namespace SomEnergia\GrupoLocalBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 use SomEnergia\MainBundle\Entity\CodigoPostal;
+use Application\Sonata\UserBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -38,6 +38,13 @@ class GrupoLocal
      */
     protected $users;
 
+    /**
+     * Methods
+     */
+
+    /**
+     * GrupoLocal constructor.
+     */
     public function __construct() {
         $this->codigosPostales = new ArrayCollection();
         $this->users = new ArrayCollection();
@@ -87,7 +94,7 @@ class GrupoLocal
      * @param \SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales
      * @return GrupoLocal
      */
-    public function addCodigosPostale(\SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales)
+    public function addCodigosPostale(CodigoPostal $codigosPostales)
     {
         $this->codigosPostales[] = $codigosPostales;
     
@@ -99,7 +106,7 @@ class GrupoLocal
      *
      * @param \SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales
      */
-    public function removeCodigosPostale(\SomEnergia\MainBundle\Entity\CodigoPostal $codigosPostales)
+    public function removeCodigosPostale(CodigoPostal $codigosPostales)
     {
         $this->codigosPostales->removeElement($codigosPostales);
     }
@@ -139,12 +146,13 @@ class GrupoLocal
     /**
      * Add users
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $users
+     * @param User $user
+     *
      * @return GrupoLocal
      */
-    public function addUser(\Application\Sonata\UserBundle\Entity\User $users)
+    public function addUser(User $user)
     {
-        $this->users[] = $users;
+        $this->users[] = $user;
     
         return $this;
     }
@@ -152,11 +160,11 @@ class GrupoLocal
     /**
      * Remove users
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $users
+     * @param User $user
      */
-    public function removeUser(\Application\Sonata\UserBundle\Entity\User $users)
+    public function removeUser(User $user)
     {
-        $this->users->removeElement($users);
+        $this->users->removeElement($user);
     }
 
     /**
@@ -169,6 +177,9 @@ class GrupoLocal
         return $this->users;
     }
 
+    /**
+     * @return bool|string
+     */
     public function postalCodesBunchString()
     {
         $result = '';
@@ -195,6 +206,7 @@ class GrupoLocal
                 }
             </script>';
         }
+
         return $result;
     }
 }
