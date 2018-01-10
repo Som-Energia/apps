@@ -3,13 +3,31 @@ SomEnergia\GrupoLocalBundle\Entity\GrupoLocal:
     gl{1..2}:
         nombre: grupo_local_<current()>
 
-# Postal Code
+# Codigo Postal
 SomEnergia\MainBundle\Entity\CodigoPostal:
     cp{1..10}:
         cp: <postcode()>
         poblacion: <city()>
         gruposLocales:
             - @gl1
+
+# Socio
+SomEnergia\SocioBundle\Entity\Socio:
+    s{1..5}:
+        erpid: <numberBetween()>
+        active: <boolean(95)>
+        name: <name()>
+        ref: <numberBetween()>
+        vat: <numberBetween()>
+        phone: <e164PhoneNumber()>
+        street: <streetAddress()>
+        city: <city()>
+        zip: <postcode()>
+        mobile: <e164PhoneNumber()>
+        email: <safeEmail()>
+        language: es
+        fechaAlta: <dateTime()>
+        fechaBaja: <dateTime()>
 
 # FOS user
 Application\Sonata\UserBundle\Entity\User:
