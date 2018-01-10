@@ -14,53 +14,47 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
  * Class CustomDashboardBlockService
- *
- * @package SomEnergia\MainBundle\Block
  */
 class CustomDashboardBlockService extends BaseBlockService
 {
+    /**
+     * @var Pool
+     */
     protected $pool;
 
     /**
+     * Methods
+     */
+
+    /**
      * @param string                                                     $name
-     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
-     * @param \Sonata\AdminBundle\Admin\Pool                             $pool
+     * @param EngineInterface $templating
+     * @param Pool                             $pool
      */
     public function __construct($name, EngineInterface $templating, Pool $pool)
     {
         parent::__construct($name, $templating);
-
         $this->pool = $pool;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
         return 'Som Energia dashboard';
     }
 
-    /*public function getDefaultSettings()
-    {
-        return array(
-            'title' => $this->getName(),
-        );
-    }*/
-
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
-    {
-    }
-
-    public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
-    {
-    }
-
+    /**
+     * @param BlockContextInterface $blockContext
+     * @param Response|null $response
+     *
+     * @return Response
+     */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        //$settings = array_merge($this->getDefaultSettings(), $block->getSettings());
-
         $dashboardGroups = $this->pool->getDashboardGroups();
-
         $settings = $blockContext->getSettings();
-
         $visibleGroups = array();
         foreach ($dashboardGroups as $name => $dashboardGroup) {
             if (!$settings['groups'] || in_array($name, $settings['groups'])) {
@@ -76,6 +70,9 @@ class CustomDashboardBlockService extends BaseBlockService
         ), $response);
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(

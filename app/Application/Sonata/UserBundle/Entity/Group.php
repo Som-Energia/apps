@@ -1,14 +1,5 @@
 <?php
 
-/**
- * This file is part of the <name> project.
- *
- * (c) <yourname> <youremail>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace Application\Sonata\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -21,17 +12,31 @@ use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 class Group extends BaseGroup
 {
     /**
+     * @var integer
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @var integer $id
      */
     protected $id;
 
     /**
-     * Get id
+     * Methods
+     */
+
+    /**
+     * User constructor.
      *
-     * @return integer $id
+     * @param string $name
+     * @param array $roles
+     */
+    public function __construct($name, $roles = array())
+    {
+        parent::__construct($name, $roles = array());
+    }
+
+    /**
+     * @return integer
      */
     public function getId()
     {
