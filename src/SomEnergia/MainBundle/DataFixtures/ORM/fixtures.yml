@@ -1,4 +1,25 @@
-# Damage
+# Grupo Local
 SomEnergia\GrupoLocalBundle\Entity\GrupoLocal:
-  gl{1..2}:
-    nombre: grupo_local_<current()>
+    gl{1..2}:
+        nombre: grupo_local_<current()>
+
+# Postal Code
+SomEnergia\MainBundle\Entity\CodigoPostal:
+    cp{1..10}:
+        cp: <postcode()>
+        poblacion: <city()>
+        gruposLocales:
+            - @gl1
+
+# FOS user
+Application\Sonata\UserBundle\Entity\User:
+    admin:
+        grupoLocal: @gl1
+        username: admin
+        plainPassword: 123456
+        email: "admin@admin.com"
+        firstname: John
+        lastname: Smith
+        enabled: true
+        roles:
+            - ROLE_SUPER_ADMIN

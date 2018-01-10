@@ -1,10 +1,9 @@
 <?php
+
 namespace SomEnergia\MainBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity
@@ -15,6 +14,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
 class CodigoPostal
 {
     /**
+     * @var int
+     *
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -22,20 +23,33 @@ class CodigoPostal
     protected $id;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=32, nullable=false, unique=true)
      */
     protected $cp;
 
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", length=255, nullable=false)
      */
     protected $poblacion;
 
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="SomEnergia\GrupoLocalBundle\Entity\GrupoLocal", mappedBy="codigosPostales")
-     **/
+     */
     protected $gruposLocales;
 
+    /**
+     * Methods
+     */
+
+    /**
+     * CodigoPostal constructor.
+     */
     public function __construct()
     {
         $this->gruposLocales = new ArrayCollection();
