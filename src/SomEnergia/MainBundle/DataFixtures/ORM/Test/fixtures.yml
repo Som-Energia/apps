@@ -1,4 +1,0 @@
-# Damage
-SomEnergia\GrupoLocalBundle\Entity\GrupoLocal:
-  gl{1..2}:
-    nombre: grupo_local_<current()>

@@ -26,7 +26,7 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     globals:
-        admin_version: "v1.0.04"
+        admin_version: "v1.0.05"
 
 # Assetic Configuration
 assetic:
@@ -96,9 +96,7 @@ sonata_admin:
             - { position: left, type: somenergia.sonata.custom.block.admin_list }
             - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Bienvenido al administrador de Som Energia</h2><p>Elige una acción del menú para continuar.</p>" } }
         groups:
-            Emails:
             Usuarios:
-            Asambleas:
             Socios:
             Grupos locales:
 
@@ -114,31 +112,6 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: Usuarios, label: Perfil }
         arguments: [null, Application\Sonata\UserBundle\Entity\Group, SonataUserBundle:Admin:GroupAdmin]
-    somenergia.mails.admin:
-        class: SomEnergia\MailBundle\Admin\AliasesAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Emails, label: Desvíos }
-        arguments: [null, SomEnergia\MailBundle\Entity\Aliases, MailBundle:AliasesAdmin]
-    somenergia.mailboxes.admin:
-        class: SomEnergia\MailBundle\Admin\UsersAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: Emails, label: Buzones }
-        arguments: [null, SomEnergia\MailBundle\Entity\Users, MailBundle:UsersAdmin]
-#    somenergia.asamblea.sede:
-#        class: SomEnergia\AsambleaBundle\Admin\SedeAdmin
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Sede }
-#        arguments: [null, SomEnergia\AsambleaBundle\Entity\Sede, AsambleaBundle:SedeAdmin]
-#    somenergia.asamblea.asamblea:
-#        class: SomEnergia\AsambleaBundle\Admin\AsambleaAdmin
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Asamblea }
-#        arguments: [null, SomEnergia\AsambleaBundle\Entity\Asamblea, AsambleaBundle:AsambleaAdmin]
-#    somenergia.asamblea.asistencia:
-#        class: SomEnergia\AsambleaBundle\Admin\AsistenciaAdmin
-#        tags:
-#            - { name: sonata.admin, manager_type: orm, group: Asambleas, label: Asistencia }
-#        arguments: [null, SomEnergia\AsambleaBundle\Entity\Asistencia, AsambleaBundle:AsistenciaAdmin]
     somenergia.socio.socio:
         class: SomEnergia\SocioBundle\Admin\SocioAdmin
         tags:

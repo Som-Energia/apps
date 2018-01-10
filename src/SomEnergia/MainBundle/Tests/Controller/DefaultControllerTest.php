@@ -9,7 +9,6 @@ use Symfony\Bundle\FrameworkBundle\Client;
  * Class DefaultControllerTest
  *
  * @category Test
- * @package  SomEnergia\MainBundle\Tests\Controller
  * @author   David Romaní <david@flux.cat>
  */
 class DefaultControllerTest extends WebTestCase
@@ -57,19 +56,8 @@ class DefaultControllerTest extends WebTestCase
     {
         return array(
             array('/admin/dashboard'),
-            array('/admin/somenergia/mail/aliases/list'),
-            array('/admin/somenergia/mail/aliases/create'),
-            array('/admin/somenergia/mail/aliases/1/edit'),
-            array('/admin/somenergia/mail/aliases/1/show'),
-            array('/admin/somenergia/mail/aliases/1/delete'),
-            array('/admin/somenergia/mail/users/list'),
-            array('/admin/somenergia/mail/users/create'),
-            array('/admin/somenergia/mail/users/admin@somenergia.coop/edit'),
-            array('/admin/somenergia/mail/users/admin@somenergia.coop/show'),
-            array('/admin/somenergia/mail/users/admin@somenergia.coop/delete'),
-            array('/admin/somenergia/socio/socio/list'),
-            array('/admin/somenergia/socio/socio/1/edit'),
-            array('/admin/somenergia/socio/socio/1/show'),
+//            array('/admin/somenergia/socio/socio/list'),
+//            array('/admin/somenergia/socio/socio/1/edit'),
             array('/admin/somenergia/main/codigopostal/list'),
             array('/admin/somenergia/main/codigopostal/create'),
             array('/admin/somenergia/main/codigopostal/1/edit'),
@@ -78,14 +66,14 @@ class DefaultControllerTest extends WebTestCase
             array('/admin/somenergia/grupolocal/grupolocal/create'),
             array('/admin/somenergia/grupolocal/grupolocal/1/edit'),
             array('/admin/somenergia/grupolocal/grupolocal/1/show'),
-            array('/admin/sonata/user/user/list'),
-            array('/admin/sonata/user/user/create'),
-            array('/admin/sonata/user/user/1/edit'),
-            array('/admin/sonata/user/user/1/show'),
-            array('/admin/sonata/user/group/list'),
-            array('/admin/sonata/user/group/create'),
-            array('/admin/sonata/user/group/1/edit'),
-            array('/admin/sonata/user/group/1/show'),
+//            array('/admin/sonata/user/user/list'),
+//            array('/admin/sonata/user/user/create'),
+//            array('/admin/sonata/user/user/1/edit'),
+//            array('/admin/sonata/user/user/1/show'),
+//            array('/admin/sonata/user/group/list'),
+//            array('/admin/sonata/user/group/create'),
+//            array('/admin/sonata/user/group/1/edit'),
+//            array('/admin/sonata/user/group/1/show'),
         );
     }
 }
