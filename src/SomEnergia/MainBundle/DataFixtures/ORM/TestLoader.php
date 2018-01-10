@@ -15,7 +15,7 @@ class TestLoader extends DataFixtureLoader
     protected function getFixtures()
     {
         return  array(
-            __DIR__ . DIRECTORY_SEPARATOR . 'Test'. DIRECTORY_SEPARATOR . 'fixtures.yml',
+            __DIR__ . DIRECTORY_SEPARATOR . 'fixtures.yml',
         );
     }
 }
