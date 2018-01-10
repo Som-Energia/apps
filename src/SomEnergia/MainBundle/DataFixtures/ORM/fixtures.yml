@@ -34,7 +34,7 @@ Application\Sonata\UserBundle\Entity\User:
     admin:
         grupoLocal: @gl1
         username: admin
-        plainPassword: 123456
+        plainPassword: 12345
         email: "admin@admin.com"
         firstname: John
         lastname: Smith
