@@ -1,6 +1,11 @@
 imports:
     - { resource: config_dev.yml }
 
+security:
+    firewalls:
+        admin:
+            http_basic: ~
+
 framework:
     test: ~
     session:
@@ -14,3 +19,8 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+doctrine:
+    dbal:
+        driver: "pdo_sqlite"
+        path:   "%kernel.root_dir%/databases/test.db3"
