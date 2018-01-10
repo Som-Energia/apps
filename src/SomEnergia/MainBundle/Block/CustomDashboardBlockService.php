@@ -1,21 +1,22 @@
 <?php
 
 namespace SomEnergia\MainBundle\Block;
-//namespace InstitutoStorico\Bundle\NewsletterBundle\Block;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\AdminBundle\Admin\Pool;
-
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\BaseBlockService;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+/**
+ * Class CustomDashboardBlockService
+ *
+ * @package SomEnergia\MainBundle\Block
+ */
 class CustomDashboardBlockService extends BaseBlockService
 {
     protected $pool;

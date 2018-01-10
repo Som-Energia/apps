@@ -43,7 +43,6 @@ class AppKernel extends Kernel
             // App
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new SomEnergia\MainBundle\MainBundle(),
-            new SomEnergia\AsambleaBundle\AsambleaBundle(),
             new SomEnergia\SocioBundle\SocioBundle(),
             new SomEnergia\GrupoLocalBundle\GrupoLocalBundle(),
         );

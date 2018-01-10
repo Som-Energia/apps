@@ -6,10 +6,6 @@ socio:
     resource: "@SocioBundle/Resources/config/routing.yml"
     prefix:   /
 
-asamblea:
-    resource: "@AsambleaBundle/Resources/config/routing.yml"
-    prefix:   /
-
 main:
     resource: "@MainBundle/Resources/config/routing.yml"
     prefix:   /
