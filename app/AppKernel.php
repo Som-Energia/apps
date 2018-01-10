@@ -42,7 +42,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             // App
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
-            new SomEnergia\MailBundle\MailBundle(),
             new SomEnergia\MainBundle\MainBundle(),
             new SomEnergia\AsambleaBundle\AsambleaBundle(),
             new SomEnergia\SocioBundle\SocioBundle(),
