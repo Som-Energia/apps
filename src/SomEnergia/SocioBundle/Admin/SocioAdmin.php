@@ -1,17 +1,27 @@
 <?php
+
 namespace SomEnergia\SocioBundle\Admin;
 
-use Symfony\Component\HttpFoundation\Request;
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\PageBundle\Model\PageInterface;
 use Sonata\AdminBundle\Route\RouteCollection;
 
+/**
+ * Class SocioAdmin
+ */
 class SocioAdmin extends Admin
 {
+    protected $datagridValues = array(
+        '_page' => 1,
+        '_sort_order' => 'ASC', // sort direction
+        '_sort_by' => 'name' // field name
+    );
+
+    /**
+     * @param ListMapper $listMapper
+     */
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
@@ -33,12 +43,9 @@ class SocioAdmin extends Admin
         ;
     }
 
-    protected $datagridValues = array(
-        '_page' => 1,
-        '_sort_order' => 'ASC', // sort direction
-        '_sort_by' => 'name' // field name
-    );
-
+    /**
+     * @param DatagridMapper $datagridMapper
+     */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
@@ -51,6 +58,9 @@ class SocioAdmin extends Admin
         ;
     }
 
+    /**
+     * @param FormMapper $formMapper
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
@@ -68,6 +78,9 @@ class SocioAdmin extends Admin
         ;
     }
 
+    /**
+     * @param RouteCollection $collection
+     */
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->add('relatedlist', 'related-list');

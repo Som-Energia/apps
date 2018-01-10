@@ -24,7 +24,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = $this->getAdminClient();
         $client->request('GET', $url);
-        $this->assertTrue($client->getResponse()->isSuccessful());
+        $this->assertEquals($client->getResponse()->getStatusCode(), 200);
     }
 
     /**
@@ -56,8 +56,9 @@ class DefaultControllerTest extends WebTestCase
     {
         return array(
             array('/admin/dashboard'),
-//            array('/admin/somenergia/socio/socio/list'),
-//            array('/admin/somenergia/socio/socio/1/edit'),
+            array('/admin/somenergia/socio/socio/list'),
+            array('/admin/somenergia/socio/socio/1/edit'),
+            array('/admin/somenergia/socio/socio/1/show'),
             array('/admin/somenergia/main/codigopostal/list'),
             array('/admin/somenergia/main/codigopostal/create'),
             array('/admin/somenergia/main/codigopostal/1/edit'),
@@ -66,14 +67,12 @@ class DefaultControllerTest extends WebTestCase
             array('/admin/somenergia/grupolocal/grupolocal/create'),
             array('/admin/somenergia/grupolocal/grupolocal/1/edit'),
             array('/admin/somenergia/grupolocal/grupolocal/1/show'),
-//            array('/admin/sonata/user/user/list'),
-//            array('/admin/sonata/user/user/create'),
-//            array('/admin/sonata/user/user/1/edit'),
-//            array('/admin/sonata/user/user/1/show'),
-//            array('/admin/sonata/user/group/list'),
-//            array('/admin/sonata/user/group/create'),
-//            array('/admin/sonata/user/group/1/edit'),
-//            array('/admin/sonata/user/group/1/show'),
+            array('/admin/sonata/user/user/list'),
+            array('/admin/sonata/user/user/create'),
+            array('/admin/sonata/user/user/1/edit'),
+            array('/admin/sonata/user/user/1/show'),
+            array('/admin/sonata/user/group/list'),
+            array('/admin/sonata/user/group/create'),
         );
     }
 }
