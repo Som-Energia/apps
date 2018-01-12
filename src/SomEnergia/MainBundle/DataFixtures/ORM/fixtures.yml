@@ -41,10 +41,4 @@ Application\Sonata\UserBundle\Entity\User:
         enabled: true
         roles:
             - ROLE_SUPER_ADMIN
-
-# FOS group
-#Application\Sonata\UserBundle\Entity\Group:
-#    group:
-#        name: group1
-#        roles:
-#            - ROLE_SUPER_ADMIN
+            - SOMENERGIA
