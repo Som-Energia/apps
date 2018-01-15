@@ -6,13 +6,21 @@
   tasks:
     - name: fix symfony logs directory apache ownership
       file:
-        path: "{{ ansistrano_deploy_to }}/shared/app/logs"
+        path: "{{ vhost_path }}/shared/app/logs"
         recurse: yes
+        mode: 0755
+        owner: www-data
+        group: www-data
+    - name: fix symfony web directory apache ownership
+      file:
+        path: "{{ vhost_path }}/shared/web"
+        recurse: yes
+        mode: 0755
         owner: www-data
         group: www-data
     - name: fix symfony cache directory apache ownership
       file:
-        path: "{{ ansistrano_release_path.stdout }}/app/cache"
+        path: "{{ vhost_path }}/current/app/cache"
         recurse: yes
         state: directory
         mode: 0755
