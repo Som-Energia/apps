@@ -1,6 +1,0 @@
-- name: fix symfony logs directory apache ownership
-  file:
-    path: "{{ ansistrano_deploy_to }}/shared/app/logs"
-    recurse: no
-    state: directory
-    mode: 0777

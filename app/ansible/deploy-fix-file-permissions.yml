@@ -1,0 +1,20 @@
+---
+- hosts: sw3
+  gather_facts: false
+  vars_files:
+    - "{{ playbook_dir }}/vars/config.yml"
+  tasks:
+    - name: fix symfony logs directory apache ownership
+      file:
+        path: "{{ ansistrano_deploy_to }}/shared/app/logs"
+        recurse: yes
+        owner: www-data
+        group: www-data
+    - name: fix symfony cache directory apache ownership
+      file:
+        path: "{{ ansistrano_release_path.stdout }}/app/cache"
+        recurse: yes
+        state: directory
+        mode: 0755
+        owner: www-data
+        group: www-data
