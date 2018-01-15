@@ -10,3 +10,11 @@
         recurse: yes
         owner: www-data
         group: www-data
+    - name: fix symfony cache directory apache ownership
+      file:
+        path: "{{ ansistrano_release_path.stdout }}/app/cache"
+        recurse: yes
+        state: directory
+        mode: 0755
+        owner: www-data
+        group: www-data
