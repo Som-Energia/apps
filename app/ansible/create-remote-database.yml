@@ -1,5 +1,5 @@
 ---
-- hosts: s6
+- hosts: sw3u
   gather_facts: false
   vars_files:
     - "{{ playbook_dir }}/vars/config.yml"
