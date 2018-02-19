@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\Collection as CCollection;
 use SomEnergia\MainBundle\Entity\CodigoPostal;
 
 /**
+ * Class Socio
+ *
  * @ORM\Entity
  * @ORM\Table(name="somenergia_socio_socio")
  * @ORM\Table(indexes={@ORM\Index(name="erpid_idx", columns={"erpid"})})

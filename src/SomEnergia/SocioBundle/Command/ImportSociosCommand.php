@@ -1,20 +1,26 @@
 <?php
+
 namespace SomEnergia\SocioBundle\Command;
 
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Output\Output;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
-
 use SomEnergia\SocioBundle\Entity\Socio;
 
-class ImportSociosCommand extends ContainerAwareCommand {
-
-    protected function configure() {
-        $this->setName('somenergia:socios:import')
+/**
+ * Class ImportSociosCommand
+ */
+class ImportSociosCommand extends ContainerAwareCommand
+{
+    /**
+     * Configure
+     */
+    protected function configure()
+    {
+        $this
+            ->setName('somenergia:socios:import')
             ->setDefinition(array(
                 new InputArgument('archivo', InputArgument::REQUIRED, 'archivo'),
             ))
@@ -24,10 +30,18 @@ class ImportSociosCommand extends ContainerAwareCommand {
 <<<EOT
 El comando <info>somenergia:socios:import</info> importa un archivo CSV de socios a la base datos. El archivo tiene que estar delimitado por comas, con campos encarrados entre comillas dobles y un salto de linea por cada registro. El formato de entrada de los campos debe ser: id, active, name, ref, vat, street, zip, city, phone, mobile, email, language y fecha alta.
 EOT
-            );
+            )
+        ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     *
+     * @return int|null|void
+     */
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $output->writeln('<info>Welcome to the Som Energia import socios command.</info>');
         if ($input->getOption('force')) {
             $output->writeln('<comment>--force option enabled (this option persists changes to database)</comment>');
@@ -44,7 +58,11 @@ EOT
                     $socio = new Socio();
                     $socio->setErpid($data[0]);
                     $socio->setActive(false);
-                    if ($data[1] == 't' || strtolower($data[1]) == 'true' || $data[1] == '1') $socio->setActive(true);
+                    if ($data[1] == 't' || strtolower($data[1]) == 'true' || $data[1] == '1') {
+                        $socio->setActive(true);
+                    } else {
+                        $socio->setActive(false);
+                    }
                     $socio->setName($data[2]);
                     $socio->setRef($data[3]);
                     $socio->setVat($data[4]);
@@ -55,7 +73,9 @@ EOT
                     $socio->setMobile($data[9]);
                     $socio->setEmail($data[10]);
                     $socio->setLanguage($data[11]);
-                    if (strlen($data[12] > 0)) $socio->setFechaAlta(\DateTime::createFromFormat('Y-m-d', $data[12]));
+                    if (strlen($data[12] > 0)) {
+                        $socio->setFechaAlta(\DateTime::createFromFormat('Y-m-d', $data[12]));
+                    }
                     //$socio->setFechaBaja(\DateTime::createFromFormat('Y-m-d', $data[13]));
                     //$output->writeln($socio->toLongString());
                     $output->write('Importando socio ERPID:' . $socio->getErpid() . '... ');
